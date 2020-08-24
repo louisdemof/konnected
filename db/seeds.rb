@@ -17,4 +17,10 @@ Feature.create(name: "Blog", description: "Gives the possibility to post article
 Feature.create(name: "Forum", description: "Gives the possibility to post ask questions and get answers")
 Feature.create(name: "Chat", description: "Gives the possibility to have online conversations on your website")
 
+# Seed for levels
+Level.create(name: "Level 1", definition: "HTML & CSS")
+Level.create(name: "Level 2", definition: "HTML, CSS & Javascript")
+Level.create(name: "Level 3", definition: "Front-end + one back-end feature")
+Level.create(name: "Level 4", definition: "Front-end + multiple back-end features")
+Level.create(name: "Level 5", definition: "Fullstack application of high difficulty")
 
