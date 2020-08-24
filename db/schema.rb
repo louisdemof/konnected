@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_152632) do
+
+ActiveRecord::Schema.define(version: 2020_08_24_153605) do
 
 
   # These are extensions that must be enabled in order to support this database
@@ -39,11 +40,20 @@ ActiveRecord::Schema.define(version: 2020_08_24_152632) do
 
   create_table "project_features", force: :cascade do |t|
     t.bigint "project_id"
+    t.bigint "feature_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feature_id"], name: "index_project_features_on_feature_id"
+    t.index ["project_id"], name: "index_project_features_on_project_id"
+  end
+
+  create_table "project_pages", force: :cascade do |t|
+    t.bigint "project_id"
     t.bigint "page_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["page_id"], name: "index_project_features_on_page_id"
-    t.index ["project_id"], name: "index_project_features_on_project_id"
+    t.index ["page_id"], name: "index_project_pages_on_page_id"
+    t.index ["project_id"], name: "index_project_pages_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
