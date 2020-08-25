@@ -6,12 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #delete previous seed
+Project.destroy_all
 Feature.destroy_all
 Level.destroy_all
 Page.destroy_all
 
 puts("Your previous seed has been deleted")
 puts("Creation of a new seed")
+
 # Seed for features
 Feature.create(name: "Booking system", difficulty: 3, description: "Gives the possibility to book products/services for a certain period (e.g. booking a hotel room)")
 Feature.create(name: "Automatic e-mails", difficulty: 1, description: "Gives the possibility to send automatic e-mails after a certain action (e.g. sending a confirmation e-mail upon user registration")
