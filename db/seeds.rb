@@ -38,3 +38,11 @@ Page.create(name: "about us page", description: "a web page stating details abou
 Page.create(name: "contact page", description: "a web page stating all contact details")
 Page.create(name: "product page", description: "a web page listing all products and respective details")
 Page.create(name: "FAQ page", description: "a web page listing frequently asked questions")
+
+#Seed for users
+10.times do
+  user = User.create!(
+    email: Faker::Internet.email,
+    password: 123456,
+  )
+end
