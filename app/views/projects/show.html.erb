@@ -1,1 +1,51 @@
-<div class="container"></div>
+<div class="container">
+<% @status = @project.status %>
+<% case @status %>
+<% when "general_info"%>
+  <%= render "page_stage" %>
+<% when "page_stage"%>
+  <%= render "feature_stage" %>
+<% when "feature_stage"%>
+  <%= render "confirmation_stage" %>
+<% else %>
+  <div class="row bg-white rounded my-2 py-3 card-shadow">
+    <h1>Project details</h1>
+  </div>
+  <div class="flexbox">
+    <div class="row bg-white rounded my-2 py-3 card-shadow">
+      <h2><%= @project.name %></h2>
+    </div>
+    <div class="row bg-white rounded my-2 py-3 card-shadow">
+      <h2></h2>
+    </div>
+    <div class="row bg-white rounded my-2 py-3 card-shadow">
+      <div>
+      <h4>Project details:</h4>
+      <br>
+      <p>test<%= @project.description %></p>
+      </div>
+    </div>
+    <div class="row rounded my-2 py-3 card-shadow height">
+      <div class="col-sm bg-white rounded px-3">
+        Total of x hours
+      </div>
+      <div class="col-sm bg-white rounded px-3">
+        Project length
+      </div>
+      <div class="col-sm bg-white rounded px-3">
+        Level 1
+      </div>
+    </div>
+    <div class="row bg-white rounded my-2 py-3 card-shadow">
+      <h3>Skills and expertise</h3>
+      <p>Add project features here</p>
+    </div>
+    <div class="row bg-white rounded my-2 py-3 card-shadow">
+      <h3>Similar jobs on Konnected</h3>
+      <p>Add project features here</p>
+    </div>
+  </div>
+<% end %>
+
+</div>
+
