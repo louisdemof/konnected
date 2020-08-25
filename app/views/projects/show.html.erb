@@ -12,29 +12,31 @@
 
 <!-- Actual project show page -->
 <div class="container">
-<h1>Project details:</h1>
-  <div class="row  py-4 my-3">
+<h1 class="mt-3">Project details:</h1>
+  <div class="row">
     <div class="col-sm-12 col-lg-8 bg-white my-3 p-3">
-    <h3><%=@project.name %></h3>
-    <h5><%=@project.level.definition %></h5>
-    <p>Posted <%= ((Time.now - @project.created_at)/3600).round %> hours ago</p>
+    <h3 class="underlined"><%=@project.name %></h3>
+    <h5 class="mt-3"><%=@project.level.definition %></h5>
+    <p id="time_update">Posted <%= ((Time.now - @project.created_at)/3600).round%><%= ' hour'.pluralize(1) %> ago</p>
     <h5>Project description:</h5>
     <p><%= @project.description %></p>
       <div class="row rounded my-2 py-3 card-shadow height">
-        <div class="col-sm bg-white rounded px-3">
+        <div class="col-sm  rounded px-3 small_card">
           Total of x hours
         </div>
-        <div class="col-sm bg-white rounded px-3">
+        <div class="col-sm  rounded px-3 small_card">
           Project length
         </div>
-        <div class="col-sm bg-white rounded px-3">
+        <div class="col-sm  rounded px-3 small_card">
          <%= @project.level.name %>
         </div>
       </div>
       <h5>Project features:</h5>
-      <% @project.features.each do |feature| %>
-      <p><%"#{feature.name}"%></p>
+      <div class="flex">
+      <% @project.features.each do |features| %>
+        <div class="flexbox feature_box"><%=features.name%></div>
       <%end %>
+      </div>
       <h5>Skills and Expertise:</h5>
       <p>Add the skills requested for the student here</p>
       <h5>Similar jobs on Konnected</h5>
