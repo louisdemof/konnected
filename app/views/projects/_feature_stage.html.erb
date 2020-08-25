@@ -1,0 +1,6 @@
+<h2> you need at least one feature</h2>
+  <%= simple_form_for(@project) do |f| %>
+  <input type="hidden" name="project[status]" value="feature_stage">
+  <%= f.association :features, as: :check_boxes %>
+  <%= f.submit %>
+<% end %>

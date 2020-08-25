@@ -1,11 +1,11 @@
 <div class="container">
   <h1 class="my-3">Create a project</h1>
   <%= simple_form_for(@project) do |f| %>
+    <input type="hidden" name="project[status]" value="general_info">
     <%= f.input :name, placeholder: "For example: Landing page" %>
-    <%= f.input :description, placeholder: "I would like to hire a freelancer to build a website very similar to Airbnb. The website should have the same functionalities as Airbnb's website: a search bar to get results for a given location, search results, search filters, a payment system, a chat section, notifications, a registration section where users choose on which side of the platform they want to be, a way to identify users to guarantee a certain level of security.
+    <%= f.input :description, input_html: { id: 'text_form' }, placeholder: "I would like to hire a freelancer to build a website very similar to Airbnb. The website should have the same functionalities as Airbnb's website: a search bar to get results for a given location, search results, search filters, a payment system, a chat section, notifications, a registration section where users choose on which side of the platform they want to be, a way to identify users to guarantee a certain level of security.
 This is the general structure of the website. I will provide more specific information about clients and workers in private. " %>
-    <%= f.input :status %>
-    <%= f.input :deadline %>
+    <%= f.input :deadline, as: :date, label: "Project Deadline", start_year: Date.today.year  , end_year: Date.today.year + 10,  order: [:day, :month, :year], include_blank: false %>
     <%= f.input :attachments, as: :file, input_html: { multiple: true }, label: "Add attachments here (optional):"%>
     <%= f.submit "Create", class: "btn btn-primary my-3"%>
   <% end %>
