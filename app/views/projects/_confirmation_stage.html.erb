@@ -1,8 +1,10 @@
-<h2>Project Confirmation</h2>
+<div class="container">
+  <h1 class="my-3">Project Confirmation</h1>
   <div>
     <h2>Add recap of the price here</h2>
   </div>
   <%= simple_form_for(@project) do |f| %>
-  <input type="hidden" name="project[status]" value="published">
-  <%= f.submit %>
-<% end %>
+    <input type="hidden" name="project[status]" value="published">
+    <%= f.submit %>
+  <% end %>
+</div>
