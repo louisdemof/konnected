@@ -13,10 +13,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
+
     @project = Project.new(project_params)
     @project.user = current_user
+    @project.project_level
     @project.save!
-    redirect_to project_path(@project) # notice: "Your project has been created"
+    redirect_to project_path(@project), notice: "Your project has been created"
   end
 
   def edit

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_08_25_084801) do
+=======
+ActiveRecord::Schema.define(version: 2020_08_25_084436) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_084801) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "difficulty"
   end
 
   create_table "levels", force: :cascade do |t|

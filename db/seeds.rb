@@ -7,15 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Seed for features
-Feature.create(name: "Booking system", description: "Gives the possibility to book products/services for a certain period (e.g. booking a hotel room)")
-Feature.create(name: "Automatic e-mails", description: "Gives the possibility to send automatic e-mails after a certain action (e.g. sending a confirmation e-mail upon user registration")
-Feature.create(name: "Payment system", description: "Gives the possibility to pay online (via Stripe)")
-Feature.create(name: "Upload information from users", description: "Gives the possibility for the users to upload documents (e.g. uploading a signed contract")
-Feature.create(name: "Users", description: "Gives the possibility to create a profile, edit a profile, log in, log out, ... ")
-Feature.create(name: "Admin log in", description: "Gives the possibility to log in as an administrator")
-Feature.create(name: "Blog", description: "Gives the possibility to post articles (only own articles)")
-Feature.create(name: "Forum", description: "Gives the possibility to post ask questions and get answers")
-Feature.create(name: "Chat", description: "Gives the possibility to have online conversations on your website")
+Feature.create(name: "Booking system", difficulty: 3, description: "Gives the possibility to book products/services for a certain period (e.g. booking a hotel room)")
+Feature.create(name: "Automatic e-mails", difficulty: 1, description: "Gives the possibility to send automatic e-mails after a certain action (e.g. sending a confirmation e-mail upon user registration")
+Feature.create(name: "Payment system", difficulty: 4, description: "Gives the possibility to pay online (via Stripe)")
+Feature.create(name: "Upload information from users", difficulty: 2, description: "Gives the possibility for the users to upload documents (e.g. uploading a signed contract")
+Feature.create(name: "Users", difficulty: 1, description: "Gives the possibility to create a profile, edit a profile, log in, log out, ... ")
+Feature.create(name: "Admin log in", difficulty: 1, description: "Gives the possibility to log in as an administrator")
+Feature.create(name: "Blog", difficulty: 3, description: "Gives the possibility to post articles (only own articles)")
+Feature.create(name: "Forum", difficulty: 4, description: "Gives the possibility to post ask questions and get answers")
+Feature.create(name: "Chat", difficulty: 4, description: "Gives the possibility to have online conversations on your website")
+Feature.create(name: "Webshop", difficulty: 10, description: "Gives the possibility to have a complete online webshop, with up to 50 products, a payment system, a shopping cart, login, logout, admin portal, ...")
 
 # Seed for levels
 Level.create(name: "Level 1", definition: "HTML & CSS")
@@ -24,3 +25,10 @@ Level.create(name: "Level 3", definition: "Front-end + one back-end feature")
 Level.create(name: "Level 4", definition: "Front-end + multiple back-end features")
 Level.create(name: "Level 5", definition: "Fullstack application of high difficulty")
 
+# Seed for pages
+Page.create(name: "home page", definition: "a web page serving as a starting point of the website")
+Page.create(name: "landing page", definition: "a web page that your customer is taken to when clicking on a link/online advertisement")
+Page.create(name: "about us page", definition: "a web page stating details about your company/club/initiative")
+Page.create(name: "contact page", definition: "a web page stating all contact details")
+Page.create(name: "product page", definition: "a web page listing all products and respective details")
+Page.create(name: "FAQ page", definition: "a web page listing frequently asked questions")
