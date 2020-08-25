@@ -25,9 +25,17 @@ Level.create(name: "Level 4", definition: "Front-end + multiple back-end feature
 Level.create(name: "Level 5", definition: "Fullstack application of high difficulty")
 
 # Seed for pages
-Page.create(name: "home page", definition: "a web page serving as a starting point of the website")
-Page.create(name: "landing page", definition: "a web page that your customer is taken to when clicking on a link/online advertisement")
-Page.create(name: "about us page", definition: "a web page stating details about your company/club/initiative")
-Page.create(name: "contact page", definition: "a web page stating all contact details")
-Page.create(name: "product page", definition: "a web page listing all products and respective details")
-Page.create(name: "FAQ page", definition: "a web page listing frequently asked questions")
+Page.create(name: "home page", description: "a web page serving as a starting point of the website")
+Page.create(name: "landing page", description: "a web page that your customer is taken to when clicking on a link/online advertisement")
+Page.create(name: "about us page", description: "a web page stating details about your company/club/initiative")
+Page.create(name: "contact page", description: "a web page stating all contact details")
+Page.create(name: "product page", description: "a web page listing all products and respective details")
+Page.create(name: "FAQ page", description: "a web page listing frequently asked questions")
+
+#Seed for users
+10.times do
+  user = User.create!(
+    email: Faker::Internet.email,
+    password: 123456,
+  )
+end
