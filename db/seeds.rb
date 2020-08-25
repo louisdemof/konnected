@@ -25,3 +25,10 @@ Level.create(name: "Level 3", definition: "Front-end + one back-end feature")
 Level.create(name: "Level 4", definition: "Front-end + multiple back-end features")
 Level.create(name: "Level 5", definition: "Fullstack application of high difficulty")
 
+# Seed for pages
+Page.create(name: "home page", definition: "a web page serving as a starting point of the website")
+Page.create(name: "landing page", definition: "a web page that your customer is taken to when clicking on a link/online advertisement")
+Page.create(name: "about us page", definition: "a web page stating details about your company/club/initiative")
+Page.create(name: "contact page", definition: "a web page stating all contact details")
+Page.create(name: "product page", definition: "a web page listing all products and respective details")
+Page.create(name: "FAQ page", definition: "a web page listing frequently asked questions")
