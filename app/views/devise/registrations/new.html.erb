@@ -4,7 +4,7 @@
 <% if params[:student] == "true" %>
 
 
-<div class="container">
+<div class="container my-5 w-50">
    <h2>Sign up</h2>
     <div class="form-inputs">
         <input type="hidden" name="user[level_id]" value="<%= Level.first.id %>" >
@@ -36,12 +36,13 @@
     </div>
     <div class="form-actions">
       <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 
   <% elsif params[:student]  == "false" %>
 
-  <div class="container">
+  <div class="container my-3 w-50">
   <h2>Sign up</h2>
     <div class="form-inputs">
       <%= f.input :first_name,
@@ -67,14 +68,14 @@
     </div>
     <div class="form-actions">
       <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 
   <% else %>
 
-  <div class="container">
+  <div class="jumbotron">
   <h2>Do you want to sign-up as a student or as a client?</h2>
-      <div class="modal-body">
         <div class="row justify-content-center no-gutters">
           <div class="col-6">
             <form method="GET" action="/users/sign_up">
@@ -93,7 +94,6 @@
               </form>
             </div>
         </div>
-      </div>
     </div>
 
   <% end %>
