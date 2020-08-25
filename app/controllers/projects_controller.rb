@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
+    @roject.project_level
     @project.save
     redirect_to project_path(@project)
   end
