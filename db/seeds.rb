@@ -38,3 +38,10 @@ Page.create(name: "about us page", description: "a web page stating details abou
 Page.create(name: "contact page", description: "a web page stating all contact details")
 Page.create(name: "product page", description: "a web page listing all products and respective details")
 Page.create(name: "FAQ page", description: "a web page listing frequently asked questions")
+
+# Seed for projects
+Project.create(name:"Project 1", status:Booking::STATUS.sample, deadline:Faker::Date.in_date_period, description:"123", page:"home page, about us page", feature:"Payment system, chat")
+Project.create(name:"Project 2", status:Booking::STATUS.sample, deadline:Faker::Date.in_date_period, description:"123", page:"home page, FAQ page, contact page", feature:"Forum, Webshop")
+Project.create(name:"Project 3", status:Booking::STATUS.sample, deadline:Faker::Date.in_date_period, description:"123", page:"landing page")
+Project.create(name:"Project 4", status:Booking::STATUS.sample, deadline:Faker::Date.in_date_period, description:"123", page:"home page, about us page, FAQ page")
+Project.create(name:"Project 5", status:Booking::STATUS.sample, deadline:Faker::Date.in_date_period, description:"123", page:"landing page, contact page")
