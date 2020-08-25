@@ -3,14 +3,16 @@ class Project < ApplicationRecord
   has_many :project_features
   has_many :features, through: :project_features
   has_many :project_pages
+  has_many :pages, through: :project_pages
   belongs_to :user
   belongs_to :level
   validates :name, presence: true
-  attribute :status, default: "open"
+  attribute :status, default: "new"
   validates :deadline, presence: true
   has_many_attached :attachments
   has_many_attached :intermediary_attachments
 
+  before_save :project_level, if: :will_save_change_to_status?
 
   def project_difficulty
     @difficulty_sum = 0
@@ -36,6 +38,5 @@ class Project < ApplicationRecord
     when sum >= 10
       self.level = Level.find_by(name: "Level 5")
     end
-    self.save
   end
 end

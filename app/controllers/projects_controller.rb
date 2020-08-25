@@ -13,12 +13,11 @@ class ProjectsController < ApplicationController
   end
 
   def create
-
     @project = Project.new(project_params)
     @project.user = current_user
     @project.project_level
-    @project.save!
-    redirect_to project_path(@project), notice: "Your project has been created"
+    @project.save
+    redirect_to project_path(@project), notice: "The first step of your project has been created"
   end
 
   def edit
@@ -34,6 +33,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :status, :deadline, :user_id, :level_id, :id)
+    params.require(:project).permit(:name, :status, :deadline, :user_id, :level_id, page_ids: [])
   end
 end
