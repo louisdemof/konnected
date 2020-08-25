@@ -35,7 +35,7 @@ class Project < ApplicationRecord
       self.level = Level.find_by(name: "Level 3")
     when 8..9
       self.level = Level.find_by(name: "Level 4")
-    when sum >= 10
+    else
       self.level = Level.find_by(name: "Level 5")
     end
   end
