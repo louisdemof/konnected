@@ -17,6 +17,18 @@ p {
   font-weight: 300;
 }
 
+.primary-color{
+  color: #167FFB;
+}
+
+.success-color{
+  color: #1EDD88;
+}
+
+.bold{
+  font-weight: bold;
+}
+
 .flex{
   display: flex;
   align-items: baseline;
@@ -27,6 +39,8 @@ p {
   margin-right: 7px;
   margin-bottom: 7px;
 }
+
+
 
 .underlined{
   border-bottom: 3px solid #3377ff;

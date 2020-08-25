@@ -35,15 +35,27 @@
       <div class="flex">
       <% @project.features.each do |features| %>
         <div class="flexbox feature_box"><%=features.name%></div>
-      <%end %>
+      <% end %>
       </div>
       <h5>Skills and Expertise:</h5>
       <p>Add the skills requested for the student here</p>
       <h5>Similar jobs on Konnected</h5>
+      <p>Some projects here</p>
+      <p>Some projects here</p>
     </div>
     <div class="col-sm-12 col-lg-4">
       <div class="bg-white my-3 p-3">
-      <h4>About the employer</h4>
+      <h4 class="text-center"><%= @project.name %></h4>
+      <div class="text-center"><%=cl_image_tag("DMN_logo.png", :width => 400, :crop => "pad")%></div>
+      <p class="text-center"><%= @project.user.email %></p>
+      <button class="btn btn-primary text-center">Apply here</button>
+      </div>
+      <div class="bg-white my-3 p-3">
+      <h4 class="text-center">About the employer</h4>
+      <p class="text-center">Location: </p>
+      <p class="text-center">Projects completed: </p>
+      <p class="text-center bold">Average rating: <span class="primary-color bold">★★★★</span></p>
+      <p class="text-center success-color success_box bold width 100%"> VERIFIED </p>
       </div>
     </div>
   </div>
