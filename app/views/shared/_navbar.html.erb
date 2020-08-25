@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
+  <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
 
@@ -27,9 +27,43 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
         </li>
-      <% end %>
+        <% end %>
+        <li class="nav-item">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Register </button>
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Do you want to continue as a student or a client?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row justify-content-center no-gutters">
+                      <div class="col-6">
+                      <form method="GET" action="/users/sign_up">
+                        <input type="hidden" id="custId" name="student" value="true">
+                          <button type="submit">
+                            <i class="fas fa-graduation-cap fa-7x"></i>
+                          </button>
+                      </form>
+                      </div>
+                      <div class="col-4">
+                        <form method="GET" action="/users/sign_up">
+                        <input type="hidden" id="custId" name="student" value="false" >
+                          <button type="submit">
+                            <i class="fas fa-building fa-7x"></i>
+                          </button>
+                       </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
     </ul>
   </div>
 </div>
