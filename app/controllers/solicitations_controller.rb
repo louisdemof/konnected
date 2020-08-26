@@ -20,6 +20,11 @@ class SolicitationsController < ApplicationController
     end
   end
 
+  def show
+    @solicitation = Solicitation.find(params[:id])
+    @project = @solicitation.project
+  end
+
   private
 
   def solicitation_params

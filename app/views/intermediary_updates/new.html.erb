@@ -1,0 +1,9 @@
+<div class="container">
+<h2>Add an update to <%= @project.name%></h2>
+  <%= simple_form_for [@project, @solicitation, @intermediary_update] do |f| %>
+    <%= f.input :description %>
+    <%= f.input :url %>
+    <%= f.input :documents, as: :file, input_html: { multiple: true }, label: "Add attachments here (optional):"%>
+    <%= f.submit "Publish update", class:"btn btn-primary" %>
+  <% end %>
+</div>

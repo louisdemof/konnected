@@ -1,8 +1,9 @@
 <div class="container">
   <h2>List of all my solicitations</h2>
   <ul>
-    <% current_user.solicitations.each do |soli| %>
-      <li><%= soli.project.name%></li>
+    <% current_user.solicitations.each do |solicitation| %>
+    <% project = solicitation.project%>
+      <li><%= link_to solicitation.project.name, new_project_solicitation_intermediary_update_path(project, solicitation)%></li>
     <% end %>
   </ul>
 </div>
