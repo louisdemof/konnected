@@ -3,8 +3,9 @@
   <div>
     <h2>Add recap of the price here</h2>
   </div>
-  <%= simple_form_for(@project) do |f| %>
-    <input type="hidden" name="project[status]" value="published">
+  <%= simple_form_for(Order.new) do |f| %>
+    <%= f.input :project_id, as: :hidden, input_html: {value: @project.id } %>
     <%= f.submit %>
   <% end %>
 </div>
+
