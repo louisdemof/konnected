@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>List of all my solicitations</h2>
+  <ul>
+    <% current_user.solicitations.each do |soli| %>
+      <li><%= soli.project.name%></li>
+    <% end %>
+  </ul>
+</div>

@@ -11,6 +11,7 @@ class Project < ApplicationRecord
   attribute :status, default: "new"
   validates :deadline, presence: true
   has_many_attached :attachments
+  has_many_attached :photos
   has_many_attached :intermediary_attachments
   monetize :price_cents
 
