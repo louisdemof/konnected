@@ -2,6 +2,9 @@
   <h1 class="my-3">Project Confirmation</h1>
   <div>
     <h2>Add recap of the price here</h2>
+    <div class="col-sm  rounded px-3 small_card">
+        <p> price: <%= humanized_money_with_symbol(@project.price) %> </p>
+      </div>
   </div>
   <%= simple_form_for(Order.new) do |f| %>
     <%= f.input :project_id, as: :hidden, input_html: {value: @project.id } %>
