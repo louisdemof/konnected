@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_084801) do
+ActiveRecord::Schema.define(version: 2020_08_26_141019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 2020_08_25_084801) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "difficulty"
+  end
+
+  create_table "intermediary_updates", force: :cascade do |t|
+    t.string "description"
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "levels", force: :cascade do |t|
@@ -90,11 +97,12 @@ ActiveRecord::Schema.define(version: 2020_08_25_084801) do
   end
 
   create_table "solicitations", force: :cascade do |t|
-    t.string "status"
+    t.string "status", default: "Pending"
     t.bigint "user_id"
     t.bigint "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "comment"
     t.index ["project_id"], name: "index_solicitations_on_project_id"
     t.index ["user_id"], name: "index_solicitations_on_user_id"
   end
