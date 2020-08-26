@@ -30,6 +30,9 @@
         <div class="col-sm  rounded px-3 small_card">
          <%= @project.level.name %>
         </div>
+        <div class="col-sm  rounded px-3 small_card">
+        <p> price: <%= humanized_money_with_symbol(@project.price) %> </p>
+        </div>
       </div>
       <h5>Project features:</h5>
       <div class="flex">
