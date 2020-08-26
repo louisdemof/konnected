@@ -10,6 +10,7 @@ class Project < ApplicationRecord
   attribute :status, default: "new"
   validates :deadline, presence: true
   has_many_attached :attachments
+  has_many_attached :photos
   has_many_attached :intermediary_attachments
 
   before_save :project_level, if: :will_save_change_to_status?
