@@ -1,25 +1,102 @@
-<h2>Sign up</h2>
-
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+<% if params[:student] == "true" %>
+
+
+<div class="container my-5 w-50">
+   <h2>Sign up</h2>
+    <div class="form-inputs">
+        <input type="hidden" name="user[level_id]" value="<%= Level.first.id %>" >
+        <%= f.input :first_name,
+                    required: true %>
+        <%= f.input :last_name,
+                    required: true %>
+        <%= f.input :address,
+                    required: true %>
+        <%= f.input :phone_number,
+                    required: true %>
+        <%= f.input :availability,
+                    required: true,
+                    as: :select,
+                    collection: 1..7,
+                    label: "Select how many days a week you are available on average" %>
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" }%>
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :student, input_html: { :value => true}, as: :hidden %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <% elsif params[:student]  == "false" %>
+
+  <div class="container my-3 w-50">
+  <h2>Sign up</h2>
+    <div class="form-inputs">
+      <%= f.input :first_name,
+                  required: true %>
+      <%= f.input :last_name,
+                  required: true %>
+      <%= f.input :address,
+                  required: true %>
+      <%= f.input :phone_number,
+                  required: true %>
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" }%>
+      <%= f.input :password,
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  required: true,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.hidden_field :student, :value => false %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
+
+  <% else %>
+
+  <div class="jumbotron">
+  <h2>Do you want to sign-up as a student or as a client?</h2>
+        <div class="row justify-content-center no-gutters">
+          <div class="col-6">
+            <form method="GET" action="/users/sign_up">
+              <input type="hidden" id="custId" name="student" value="true">
+                <button type="submit">
+                  <i class="fas fa-graduation-cap fa-7x"></i>
+                </button>
+            </form>
+            </div>
+            <div class="col-4">
+              <form method="GET" action="/users/sign_up">
+              <input type="hidden" id="custId" name="student" value="false" >
+                <button type="submit">
+                  <i class="fas fa-building fa-7x"></i>
+                </button>
+              </form>
+            </div>
+        </div>
+    </div>
+
+  <% end %>
 <% end %>
 
-<%= render "devise/shared/links" %>
+

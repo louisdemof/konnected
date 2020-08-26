@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="my-3">Select the different pages you need for your project</h1>
+  <%= simple_form_for(@project) do |f| %>
+    <input type="hidden" name="project[status]" value="page_stage">
+    <%= f.association :pages, as: :check_boxes %>
+    <%= f.submit %>
+  <% end %>
+</div>

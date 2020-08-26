@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+  <%= link_to "/", class: "navbar-brand" do %>
+    <%= image_tag "logo.png", style:"height: 50px;"%>
+  <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -12,16 +12,38 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
+          <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
-        </li>
+        <% if current_user.student %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              My dashboard
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Browse projects", "#", class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Solicitations</a>
+              <a class="dropdown-item" href="#">Open projects</a>
+              <a class="dropdown-item" href="#">Closed projects</a>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              My projects
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Add new project", new_project_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Open projects</a>
+              <a class="dropdown-item" href="#">Pending solicitations</a>
+              <a class="dropdown-item" href="#">Closed projects</a>
+            </div>
+          </li>
+        <% end %>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
@@ -29,7 +51,42 @@
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
-      <% end %>
+      
+        <li class="nav-item">
+          <span class="nav-link" data-toggle="modal" data-target="#exampleModalCenter">Register</span>
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Do you want to continue as a student or a client?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row justify-content-center no-gutters">
+                      <div class="col-6">
+                      <form method="GET" action="/users/sign_up">
+                        <input type="hidden" id="custId" name="student" value="true">
+                          <button type="submit">
+                            <i class="fas fa-graduation-cap fa-7x"></i>
+                          </button>
+                      </form>
+                      </div>
+                      <div class="col-4">
+                        <form method="GET" action="/users/sign_up">
+                        <input type="hidden" id="custId" name="student" value="false" >
+                          <button type="submit">
+                            <i class="fas fa-building fa-7x"></i>
+                          </button>
+                       </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <% end %>
     </ul>
   </div>
 </div>

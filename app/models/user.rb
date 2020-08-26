@@ -1,7 +1,15 @@
 class User < ApplicationRecord
   has_many :solicitations
+  has_many :projects
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  before_create :level_1
+  belongs_to :level, optional: :true
+
+  def level_1
+    level = Level.first
+  end
+
 end

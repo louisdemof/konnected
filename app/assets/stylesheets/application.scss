@@ -11,3 +11,47 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+p {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.primary-color{
+  color: #167FFB;
+}
+
+.success-color{
+  color: #1EDD88;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.flex{
+  display: flex;
+  align-items: baseline;
+  justify-content: left;
+}
+
+.flexbox{
+  margin-right: 7px;
+  margin-bottom: 7px;
+}
+
+
+
+.underlined{
+  border-bottom: 3px solid #3377ff;
+  display: inline;
+}
+
+#text_form{
+  height: 150px;
+}
+
+#time_update{
+  font-size: 14px;
+  color: grey;
+}
