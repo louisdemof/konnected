@@ -12,6 +12,11 @@
 @import "components/index";
 @import "pages/index";
 
+h1{
+  color: $blue;
+}
+
+
 p {
   font-size: 14px;
   font-weight: 300;
