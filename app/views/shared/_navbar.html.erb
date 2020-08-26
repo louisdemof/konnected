@@ -14,18 +14,33 @@
         <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            My projects
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Add new project", new_project_path, class:"dropdown-item" %>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Open projects</a>
-            <a class="dropdown-item" href="#">Pending solicitations</a>
-            <a class="dropdown-item" href="#">Closed projects</a>
-          </div>
-        </li>
+        <% if current_user.student %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              My dashboard
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Browse projects", "#", class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Solicitations",  solicitations_path, class:"dropdown-item"%>
+              <a class="dropdown-item" href="#">Open projects</a>
+              <a class="dropdown-item" href="#">Closed projects</a>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              My projects
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Add new project", new_project_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Open projects</a>
+              <a class="dropdown-item" href="#">Pending solicitations</a>
+              <a class="dropdown-item" href="#">Closed projects</a>
+            </div>
+          </li>
+        <% end %>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

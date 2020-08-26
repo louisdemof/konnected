@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>Application to project <%= @project.name %></h2>
+  <%= simple_form_for [@project, @solicitation] do |f| %>
+
+    <%= f.input :comment, label:"Why do you want to work on this project?" %>
+    <%= f.submit "Apply", class:"btn btn-primary"%>
+  <% end %>
+</div>
