@@ -57,3 +57,8 @@ Project.create!(name:"Project 5", user: User.all.sample, level: [level_1, level_
   )
 end
 
+# Seed for Solicitation
+Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
