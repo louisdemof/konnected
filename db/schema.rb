@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_08_26_141019) do
+ActiveRecord::Schema.define(version: 2020_08_26_173217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +49,8 @@ ActiveRecord::Schema.define(version: 2020_08_26_141019) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "solicitation_id", null: false
+    t.index ["solicitation_id"], name: "index_intermediary_updates_on_solicitation_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -142,6 +143,8 @@ ActiveRecord::Schema.define(version: 2020_08_26_141019) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+
+  add_foreign_key "intermediary_updates", "solicitations"
   add_foreign_key "orders", "projects"
   add_foreign_key "orders", "users"
   add_foreign_key "projects", "levels"
