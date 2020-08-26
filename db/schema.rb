@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(version: 2020_08_26_173217) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-
   add_foreign_key "intermediary_updates", "solicitations"
   add_foreign_key "orders", "projects"
   add_foreign_key "orders", "users"
