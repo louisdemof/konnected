@@ -5,4 +5,10 @@
   <%= f.association :features, as: :check_boxes %>
   <%= f.submit %>
 <% end %>
+<h3> Total cost <span id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100 %></span> euro</h3>
+  <% @features.each do |feature| %>
+    <div id="<%=feature.id%>" class="d-none">
+      <%= feature.amount_cents %>
+    </div>
+  <%end%>
 </div>

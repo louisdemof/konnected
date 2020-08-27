@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @pages = Page.all
+    @features = Feature.all
   end
 
   def new

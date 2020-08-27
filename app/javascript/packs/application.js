@@ -27,10 +27,13 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+// import { initSelect2 } from '../components/init_select2';
+import { InitPriceTotal } from './price_total';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  InitPriceTotal();
 });
 
 //function myFunction() {
@@ -48,18 +51,31 @@ document.addEventListener('turbolinks:load', () => {
 //}
 
 
-const checkboxs = document.querySelectorAll("fieldset .form-check-input")
-const checkboxGroup =document.querySelector("fieldset")
+// const checkboxGroup =document.querySelector("fieldset")
+// const checkboxGroup1 =document.querySelector("fieldset")
+// const form =document.querySelector("form")
+// const total = 0
+// var result1 = 0
 
 
-checkboxGroup.addEventListener("change", (event) => {
-  var result = 0
-  checkboxs.forEach(checkbox => {
-    if (checkbox.checked == true) {
-    const price = document.getElementById(checkbox.value).innerText;
-    const amount = parseInt(price);
-    result = result + amount;
-    }
-  })
-  document.getElementById('total').innerHTML = result/100;
-});
+
+// form.addEventListener("submit", (event) => {
+//   total = result1
+// });
+
+// checkboxGroup1.addEventListener("change", (event) => {
+//   var result = 0
+//   checkboxs.forEach(checkbox => {
+//     if (checkbox.checked === true) {
+//     const price = document.getElementById(checkbox.value).innerText;
+//     const amount = parseInt(price);
+//     result = result + amount;
+//     }
+//   })
+//   document.getElementById('price').innerHTML = totel + result/100;
+// });
+
+
+
+
+

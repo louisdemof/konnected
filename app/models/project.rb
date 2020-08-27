@@ -42,4 +42,16 @@ class Project < ApplicationRecord
       self.level = Level.find_by(name: "Level 5")
     end
   end
+
+
+  def total_price
+    total = 0
+    features.each do |feature|
+      total+=feature.amount_cents
+      end
+      pages.each do |page|
+        total+=page.amount_cents
+      end
+    return total
+  end
 end
