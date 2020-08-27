@@ -5,4 +5,10 @@
     <%= f.association :pages, as: :check_boxes %>
     <%= f.submit %>
   <% end %>
+  <h3> Total cost <span id="total">0</span> euro</h3>
+  <% @pages.each do |page| %>
+    <div id="<%=page.id%>" class="d-none">
+      <%= page.amount_cents %>
+    </div>
+  <%end%>
 </div>

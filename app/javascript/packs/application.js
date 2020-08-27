@@ -32,3 +32,34 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
 });
+
+//function myFunction() {
+  // Get the checkbox
+  //var checkBox = document.getElementById("checkbox");
+  // Get the output text
+  //var text = document.getElementById("text");
+
+  // If the checkbox is checked, display the output text
+  //if (checkBox.checked == true){
+    //text.style.display = "block";
+  //} else {
+    //text.style.display = "none";
+  //}
+//}
+
+
+const checkboxs = document.querySelectorAll("fieldset .form-check-input")
+const checkboxGroup =document.querySelector("fieldset")
+
+
+checkboxGroup.addEventListener("change", (event) => {
+  var result = 0
+  checkboxs.forEach(checkbox => {
+    if (checkbox.checked == true) {
+    const price = document.getElementById(checkbox.value).innerText;
+    const amount = parseInt(price);
+    result = result + amount;
+    }
+  })
+  document.getElementById('total').innerHTML = result/100;
+});

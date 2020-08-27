@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @pages = Page.all
   end
 
   def new
@@ -16,7 +17,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user = current_user
     @project.project_level
-    @project.save
+    @project.save!
     redirect_to project_path(@project), notice: "The first step of your project has been created"
   end
 
