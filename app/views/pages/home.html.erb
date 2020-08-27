@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container my-5">
       <h2 class="text-center mb-3">Your projects</h2>
       <div class="row">
         <% unless current_user.projects.empty?%>
@@ -47,7 +47,8 @@
                 <p class="card-text"><%= project.description%></p>
                 <% if project.status == "published"%>
                   <p class="card-text btn-border-success">Project open for applications</p>
-                  <%= link_to "See applications", "#", class:"btn btn-outline-primary"%>
+                  <%= link_to "Applications", "#", class:"btn btn-outline-primary"%>
+                  <%= link_to "Project details", project_path(project), class:"btn btn-outline-primary my-2" %>
                 <% elsif project.status == "assigned" %>
                   <p class="card-text btn-border-success">Project assigned to ...</p>
                   <%= link_to "Go to dashboard", "#", class:"btn btn-outline-primary"%>
