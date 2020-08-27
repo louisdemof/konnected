@@ -82,3 +82,8 @@ end
   )
 end
 
+# Seed for Solicitation
+Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
