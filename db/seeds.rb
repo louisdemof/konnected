@@ -55,6 +55,36 @@ Project.create!(name:"Project 5", user: User.all.sample, level: [level_1, level_
   user = User.create!(
     email: Faker::Internet.email,
     password: 123456,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    availability: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    address: "#{Faker::Address.street_address} #{Faker::Address.city}" ,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    student: [true, false].sample
+    level: Level.all.sample
   )
 end
 
+
+#Seed for project_pages
+6.times do
+  project_page = ProjectPage.create!(
+    project: Project.all.sample,
+    page: [page_1, page_2, page_3, page_4, page_5, page_6].sample,
+  )
+end
+
+
+# Seed for Project Features
+10.times do
+  project_feature = ProjectFeature.create!(
+    project: Project.all.sample,
+    feature: Feature.all.sample
+  )
+end
+
+# Seed for Solicitation
+Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
