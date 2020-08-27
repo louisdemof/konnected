@@ -17,7 +17,26 @@
           <% if update.documents %>
             <p class="card-text">show documents</p>
           <%end%>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div>
+        <hr>
+          <h5 class="container">Comments</h5>
+          <% update.comments.each do |comment| %>
+            <div class="container" id="comment-<%=comment.id%>">
+              <i class="author text-primary">
+                <span><%= comment.user.first_name %></span>
+                <small><%= comment.created_at.strftime("%a %b %e at %l:%M%p") %>:</small>
+              </i>
+              <p><%= comment.content%></p>
+            </div>
+          <%end%>
+            <%= simple_form_for [@project, @solicitation, update, @comment], remote: true do |f| %>
+              <div class="d-flex">
+                  <%= f.input :content, label: false, placeholder: "Write your message" %>
+                  <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
+              </div>
+            <% end %>
+
         </div>
       </div>
     <% end %>
