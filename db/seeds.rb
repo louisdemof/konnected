@@ -54,6 +54,13 @@ Project.create!(name:"Project 5", user: User.all.sample, level: [level_1, level_
   user = User.create!(
     email: Faker::Internet.email,
     password: 123456,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    availability: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    address: "#{Faker::Address.street_address} #{Faker::Address.city}" ,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    student: [true, false].sample
+    level: Level.all.sample
   )
 end
 
