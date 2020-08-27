@@ -29,24 +29,45 @@
         "Why don't you start a new project?", "Believe you can and you're halfway there", "Today is the first day of the rest of your life"].sample %>
         <p><%= random_welcome %></p>
         <div class="d-flex">
-          <%= link_to "Start a project", new_project_path, class:"btn btn-primary mx-3"%>
-          <%= link_to "My dashboard", "#", class:"btn btn-primary mx-3" %>
+          <%= link_to "Start a new project", new_project_path, class:"btn btn-primary mx-3"%>
         </div>
       </div>
     </div>
 
     <div class="container mt-5">
-      <h2>Your projects</h2>
-      <ul>
+      <h2 class="text-center mb-3">Your projects</h2>
+      <div class="row">
         <% unless current_user.projects.empty?%>
           <% current_user.projects.each do |project| %>
-            <li><%= project.name %></li>
-          <% end %>
-        <% end %>
-      </ul>
+            <div class="card my-2 col-3 offset-1">
+              <div class="card-header">
+                <h4><%= project.name %></h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text"><%= project.description%></p>
+                <% if project.status == "published"%>
+                  <p class="card-text btn-border-success">Project open for applications</p>
+                  <%= link_to "See applications", "#", class:"btn btn-outline-primary"%>
+                <% elsif project.status == "assigned" %>
+                  <p class="card-text btn-border-success">Project assigned to ...</p>
+                  <%= link_to "Go to dashboard", "#", class:"btn btn-outline-primary"%>
+                <% elsif project.status == "closed"%>
+                  <p class="card-text btn-border-success">Project closed</p>
+                  <%= link_to "See details", "#", class:"btn btn-outline-primary"%>
+                <% else %>
+                  <p class="card-text btn-border-success">Project not published yet</p>
+                  <%= link_to "Finish project", project_path(project), class:"btn btn-outline-danger"%>
+                <% end %>
+                
+              </div>
+            </div>
+          <%end%>
+        <%end%>
+      </div>  
     </div>
+    <%end%>
+      
 
-  <% end %>
 <% else %>
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_path "banner.jpg" %>');">
   <div class="container d-flex align-items-center flex-column">

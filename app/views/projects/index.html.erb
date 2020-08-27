@@ -2,6 +2,7 @@
   <ul>
   <% @projects.each do |project| %>
     <li><%= project.name %></li>
+    <li> Amount: <%= humanized_money_with_symbol(project.price) %></li>
   <% end %>
   </ul>
 </div>
