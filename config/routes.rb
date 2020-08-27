@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   mount StripeEvent::Engine, at: '/stripe-webhooks'
   resources :solicitations, only: [:index, :show, :destroy]
-  resources :projects, except: [:destroy] do
+  resources :projects do
     resources :project_pages, only: [:new, :create, :destroy]
     resources :project_features, only: [:new, :create, :destroy]
     resources :solicitations, only: [:new, :create] do 
