@@ -64,6 +64,16 @@ Project.create!(name:"Project 5", user: User.all.sample, level: [level_1, level_
   )
 end
 
+
+#Seed for project_pages
+6.times do
+  project_page = ProjectPage.create!(
+    project: Project.all.sample,
+    page: [page_1, page_2, page_3, page_4, page_5, page_6].sample,
+  )
+end
+
+
 # Seed for Project Features
 10.times do
   project_feature = ProjectFeature.create!(
