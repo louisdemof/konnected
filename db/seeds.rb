@@ -43,13 +43,6 @@ page_5 = Page.create(name: "product page", description: "a web page listing all 
 page_6 = Page.create(name: "FAQ page", description: "a web page listing frequently asked questions")
 
 
-# Seed for projects
-Project.create!(name:"Project 1", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"challenging project", pages: [page_1, page_3, page_4], features: [feature_1, feature_3])
-Project.create(name:"Project 2", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"complex project", pages: [page_1,page_3], features: [feature_6, feature_4])
-Project.create(name:"Project 3", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"project for newcomers", pages: [page_3])
-Project.create(name:"Project 4", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"interesting project", pages: [page_1, page_3, page_4])
-Project.create!(name:"Project 5", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"suitable for advanced devs", pages: [page_1, page_3, page_4])
-
 #Seed for users
 10.times do
   user = User.create!(
@@ -60,10 +53,18 @@ Project.create!(name:"Project 5", user: User.all.sample, level: [level_1, level_
     availability: Faker::Date.between(from: 2.days.ago, to: Date.today),
     address: "#{Faker::Address.street_address} #{Faker::Address.city}" ,
     phone_number: Faker::PhoneNumber.cell_phone,
-    student: [true, false].sample
+    student: [true, false].sample,
     level: Level.all.sample
   )
 end
+
+
+# Seed for projects
+Project.create!(name:"Project 1", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"challenging project", pages: [page_1, page_3, page_4], features: [feature_1, feature_3])
+Project.create(name:"Project 2", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"complex project", pages: [page_1,page_3], features: [feature_6, feature_4])
+Project.create(name:"Project 3", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"project for newcomers", pages: [page_3])
+Project.create(name:"Project 4", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"interesting project", pages: [page_1, page_3, page_4])
+Project.create!(name:"Project 5", user: User.all.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: ["accepted", "rejected", "pending"].sample, deadline: Faker::Date.in_date_period, description:"suitable for advanced devs", pages: [page_1, page_3, page_4])
 
 
 #Seed for project_pages
