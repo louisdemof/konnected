@@ -23,6 +23,8 @@ class SolicitationsController < ApplicationController
   def show
     @solicitation = Solicitation.find(params[:id])
     @project = @solicitation.project
+    @intermediary_update = @solicitation.intermediary_updates
+    @comment = Comment.new
   end
 
   private
