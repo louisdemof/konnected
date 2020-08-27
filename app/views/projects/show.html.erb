@@ -80,7 +80,7 @@
                 <%= link_to rails_blob_path(attachment, disposition: "attachment"), target: "_blank" do %>
                 <i class="fas fa-file-download fa-2x"></i>
                 <% end %>
-              <p id="time_update" class="text-center"=><%= attachment.filename %></p>
+              <p id="time_update" class="text-center"><%= attachment.filename %></p>
               </div>
             <% end %>
           </div>
@@ -94,6 +94,7 @@
         <h5 class="text-center"><%= @project.user.first_name %> <%=@project.user.last_name%></h5>
         <p class="text-center mt-3">Phone: <%=@project.user.phone_number %> </p>
         <p class="text-center">Email: <%= mail_to @project.user.email, @project.user.email %></p>
+
 
         <!--Add if statement here for if the student level is equal to the project level otherwise disable the button-->
 
