@@ -57,3 +57,11 @@ Project.create!(name:"Project 5", user: User.all.sample, level: [level_1, level_
   )
 end
 
+# Seed for Project Features
+10.times do
+  project_feature = ProjectFeature.create!(
+    project: Project.all.sample,
+    feature: Feature.all.sample
+  )
+end
+
