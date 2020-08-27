@@ -14,10 +14,10 @@
     </div>
 
     <div class="container mt-5">
-      <h2>Latest projects on the platform</h2>
+      <h2>All projects on the platform</h2>
       <ul>
-        <% @projects.last(3).each do |project| %>
-          <li><%= project.name %></li>
+        <% @projects.each do |project| %>
+          <li><%= link_to project.name, project_path(project) %></li>
         <% end %>
       </ul>
     </div>
