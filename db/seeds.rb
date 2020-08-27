@@ -8,6 +8,7 @@
 #delete previous seed
 Project.destroy_all
 Feature.destroy_all
+User.destroy_all
 Level.destroy_all
 Page.destroy_all
 
