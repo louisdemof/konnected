@@ -1,6 +1,6 @@
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
-  config.hosts << "324a11a63067.ngrok.io"
+  config.hosts << "db72a7af4e76.ngrok.io"
   # Settings specified here will take precedence over those in config/application.rb.
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
