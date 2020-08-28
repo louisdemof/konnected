@@ -29,12 +29,14 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @project.update(project_params)
+    @project.price_cents = @project.total_price
+    @project.save
     redirect_to project_path(@project)
   end
 
   private
 
   def project_params
-    params.require(:project).permit(:name, :status, :deadline, :description, :user_id, :level_id, page_ids: [], feature_ids: [], attachments: [], photos: [] )
+    params.require(:project).permit(:name, :status, :deadline, :description, :user_id, :level_id, page_ids: [], feature_ids: [], attachments: [], photos: [])
   end
 end

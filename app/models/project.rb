@@ -43,15 +43,14 @@ class Project < ApplicationRecord
     end
   end
 
-
   def total_price
     total = 0
     features.each do |feature|
       total+=feature.amount_cents
-      end
+        end
       pages.each do |page|
         total+=page.amount_cents
-      end
+        end
     return total
   end
 end

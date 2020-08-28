@@ -3,7 +3,7 @@
   <div>
     <h2>Add recap of the price here</h2>
     <div class="col-sm  rounded px-3 small_card">
-        <p> price: <%= humanized_money_with_symbol(@project.price) %> </p>
+        <p> price: <%= @project.total_price / 100 %> euro </p>
       </div>
   </div>
   <%= simple_form_for(Order.new) do |f| %>
