@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resources :project_pages, only: [:new, :create, :destroy]
     resources :project_features, only: [:new, :create, :destroy]
     resources :solicitations, only: [:new, :create, :index] do
-      resources :intermediary_updates, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+      resources :intermediary_updates, only: [:index, :new, :create, :edit, :update, :destroy, :show] do
+        resources :comments, only: :create
+      end
     end
   end
 
