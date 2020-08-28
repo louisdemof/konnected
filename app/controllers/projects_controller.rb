@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @solicitation = @project.solicitations
+    @solicitation = @project.solicitations.find_by(status: "Accepted")
   end
 
   def new

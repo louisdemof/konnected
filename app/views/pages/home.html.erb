@@ -47,11 +47,16 @@
                 <p class="card-text"><%= project.description%></p>
                 <% if project.status == "published"%>
                   <p class="card-text btn-border-success">Project open for applications</p>
-                  <%= link_to "See applications", "#", class:"btn btn-primary"%>
+                  <% if project.solicitations.empty?%>
+                   <button class="btn btn-secondary text-center" disabled>No applications yet</button>
+                  <% else %>
+                    <%= link_to "See applications", project_solicitations_path(project), class:"btn btn-primary"%>
+                  <%end %>
                   <%= link_to "Project details", project_path(project), class:"btn btn-outline-primary my-2" %>
                 <% elsif project.status == "assigned" %>
+                  <% @solicitation = project.solicitations.find_by(status: "Accepted")%>
                   <p class="card-text btn-border-success">Project assigned to ...</p>
-                  <%= link_to "Go to dashboard", "#", class:"btn btn-primary"%>
+                   <%= link_to "Go to your dashboard", solicitation_path(@solicitation), class:"btn btn-primary text-center"%>
                   <%= link_to "Project details", project_path(project), class:"btn btn-outline-primary my-2" %>
                 <% elsif project.status == "closed"%>
                   <p class="card-text btn-border-success">Project closed</p>
