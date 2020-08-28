@@ -1,6 +1,6 @@
 
 .btn-style,
-a.btn {
+a.btn-style {
   display: inline-block;
   text-transform: uppercase;
   cursor: pointer;
@@ -16,7 +16,7 @@ a.btn {
 }
 
 .btn-style,
-a.btn:hover {
+a.btn-style:hover {
   background: #167FFB;
   box-shadow:0 7px 14px;
   color-shadow:0 3px 6px rgba(0, 0, 0, .08);
@@ -24,7 +24,7 @@ a.btn:hover {
 }
 
 .btn-style,
-a.btn:active {
+a.btn-style:active {
   box-shadow:0 4px 6px;
   color-shadow:0 1px 3px rgba(0, 0, 0, .12);
   transform: translateY(1px);
