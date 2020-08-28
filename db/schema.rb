@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_08_28_104207) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "difficulty"
+    t.integer "amount_cents", default: 0, null: false
   end
 
   create_table "intermediary_updates", force: :cascade do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 2020_08_28_104207) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount_cents", default: 0, null: false
   end
 
   create_table "project_features", force: :cascade do |t|
