@@ -81,7 +81,7 @@ Project.create!(name:"Project 1", user: @clients.sample, level: [level_1, level_
 Project.create(name:"Project 2", user: @clients.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: "published", deadline: Faker::Date.in_date_period, description:"complex project", pages: [page_1,page_3], features: [feature_6, feature_4])
 Project.create(name:"Project 3", user: @clients.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: "published", deadline: Faker::Date.in_date_period, description:"project for newcomers", pages: [page_3])
 Project.create(name:"Project 4", user: @clients.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: "published", deadline: Faker::Date.in_date_period, description:"interesting project", pages: [page_1, page_3, page_4])
-Project.create!(name:"Project 5", user: @clients.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: "published, deadline: Faker::Date.in_date_period, description:"suitable for advanced devs", pages: [page_1, page_3, page_4])
+Project.create!(name:"Project 5", user: @clients.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: "published", deadline: Faker::Date.in_date_period, description:"suitable for advanced devs", pages: [page_1, page_3, page_4])
 
 
 #Seed for project_pages
