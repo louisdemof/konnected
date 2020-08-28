@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="my-3">User</h1>
+  <%= simple_form_for(@user) do |f| %>
+    <input type="hidden" name="project[status]" value="page_stage">
+    <%= f.input :username %>
+    <%= f.submit %>
+  <% end %>
+</div>

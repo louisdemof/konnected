@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   root to: 'pages#home'
   mount StripeEvent::Engine, at: '/stripe-webhooks'
-  resources :solicitations, only: [:index, :show, :destroy]
+  resources :solicitations, only: [:index, :show, :destroy] do
+    resources :reviews, only: [:new, :create]
+  end
+  resources :reviews, only: [:index, :show, :destroy]
+  resources :users, only: [:show, :index]
   resources :projects, except: [:destroy] do
     resources :project_pages, only: [:new, :create, :destroy]
     resources :project_features, only: [:new, :create, :destroy]
-    resources :solicitations, only: [:new, :create] do 
+    resources :solicitations, only: [:new, :create] do
       resources :intermediary_updates, only: [:index, :new, :create, :edit, :update, :destroy, :show]
     end
   end

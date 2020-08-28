@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>List of all my reviews</h2>
+  <ul>
+  <% @reviews.each do |review| %>
+    <li><%= review.comment %></li>
+  <% end %>
+  </ul>
+</div>

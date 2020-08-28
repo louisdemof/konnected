@@ -1,0 +1,9 @@
+<div class="container">
+  <h1 class="my-3">Create review</h1>
+  <%= simple_form_for(@review) do |f| %>
+    <input type="hidden" name="project[status]" value="general_info">
+    <%= f.input :score, as: :boolean %>
+    <%= f.input :comment, placeholder: "well done!" %>
+    <%= f.submit "Submit", class: "btn btn-primary my-3"%>
+  <% end %>
+</div>
