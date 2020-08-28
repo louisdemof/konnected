@@ -73,7 +73,7 @@ User.create!(
 
 User.where(student: false).each do |user|
   user.update company_name: ["Delincenut", "Biqom","Equip'r", "Giotto", "Edge", "Cowboy", "Compliments", "Javry", "Hoplr", "Cowboy" ,"Listminut", "Pom", "Animo", "Squats"].sample
-en
+end
 
 # Seed for projecs
 @clients = User.where(student: fals)
