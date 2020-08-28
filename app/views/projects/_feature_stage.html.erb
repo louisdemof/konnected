@@ -1,8 +1,14 @@
 <div class="container">
   <h1 class="my-3">Select the desired features for your project</h1>
+  <h3> Total cost <span id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100 %></span> euro</h3>
   <%= simple_form_for(@project) do |f| %>
   <input type="hidden" name="project[status]" value="feature_stage">
   <%= f.association :features, as: :check_boxes %>
   <%= f.submit %>
 <% end %>
+  <% @features.each do |feature| %>
+    <div id="<%=feature.id%>" class="d-none">
+      <%= feature.amount_cents %>
+    </div>
+  <%end%>
 </div>

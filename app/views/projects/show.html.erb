@@ -210,6 +210,9 @@
             <p class="text-center">Phone: </p>
             <p class="text-center">Email: </p>
             <p class="text-center">Location:</p>
+            <p class="text-center"> <%=link_to "See Linkedin profile", "#{@project.user.linkedin_profile}" %></p>
+            <h5 class="text-center">Personal website:</h5>
+            <p class="text-center">Personal website:</p>
             <p class="text-center">Projects completed: </p>
             <p class="text-center">Member since: <%=@project.user.created_at.strftime("%d of %B, %Y")%> </p>
             <p class="text-center bold">Average rating: <span class="primary-color bold">★★★★</span></p>
