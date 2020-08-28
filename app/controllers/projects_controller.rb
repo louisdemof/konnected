@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @pages = Page.all
     @features = Feature.all
+    @solicitation = @project.solicitations.find_by(status: "Accepted")
   end
 
   def new
@@ -32,6 +33,12 @@ class ProjectsController < ApplicationController
     @project.price_cents = @project.total_price
     @project.save
     redirect_to project_path(@project)
+  end
+
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to root_path
   end
 
   private

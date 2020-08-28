@@ -1,9 +1,13 @@
-<div class="container d-flex flex-column align-items-center">
-  <h2 class="text-center my-4">Updates</h2>
+    <div class="container d-flex flex-column align-items-center my-4">
+      <h2 class="">Updates</h2>
+      <%= link_to "Project details", project_path(@project), class:"btn btn-outline-primary" %>
+    </div>
+  
+  <div class="container d-flex flex-column align-items-center">
     <% @new_solicitation_first = @solicitation.intermediary_updates.reverse %>
     <% @new_solicitation_first.each do |update| %>
       <div class="card w-75 my-3">
-        <div class="card-header bg-white">
+        <div class="card-header bg-white text-right">
           <%= "#{update.created_at.day}/#{update.created_at.month}/#{update.created_at.year} at #{update.created_at.hour}:#{update.created_at.min} "%>
         </div>
         <div class="card-body">
@@ -17,7 +21,30 @@
           <% if update.documents %>
             <p class="card-text">show documents</p>
           <%end%>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div>
+      
+          <div class="bg-light">
+          <hr>
+            <h5 class="container">Comments</h5>
+            <% update.comments.each do |comment| %>
+              <div class="container" id="comment-<%=comment.id%>">
+                <i class="author text-primary">
+                  <span><%= comment.user.first_name %></span>
+                  <small><%= comment.created_at.strftime("%a %b %e at %l:%M%p") %>:</small>
+                </i>
+                <p><%= comment.content%></p>
+              </div>
+            <%end%>
+              <%= simple_form_for [@project, @solicitation, update, @comment], remote: true do |f| %>
+                <div class="d-flex">
+                    <%= f.input :content, label: false, placeholder: "Write your message" %>
+                    <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
+                </div>
+              <% end %>
+          </div>
+          
+
         </div>
       </div>
     <% end %>

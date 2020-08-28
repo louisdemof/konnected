@@ -1,9 +1,15 @@
 <div class="container">
-  <h2>List of all my solicitations</h2>
+  <h2>List of all the solicitations for <%=@project.name%></h2>
   <ul>
-    <% current_user.solicitations.each do |solicitation| %>
-    <% project = solicitation.project%>
-      <li><%= link_to solicitation.project.name, new_project_solicitation_intermediary_update_path(project, solicitation)%></li>
+    <% @project.solicitations.each do |solicitation| %>
+        <%=" #{solicitation.user.first_name} #{solicitation.user.last_name} "%>
+        <%=" #{solicitation.comment} "%>
+        <%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%>
+        <div>
+          <%= simple_form_for(solicitation, url: validate_solicitation_path(solicitation), html: {method: :patch}) do |f| %>
+            <%= f.button :submit , value: "Accepted", class: "btn btn-success"%>
+          <% end %>
+        </div>
     <% end %>
   </ul>
 </div>

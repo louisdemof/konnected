@@ -22,7 +22,6 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Browse projects", "#", class:"dropdown-item" %>
               <div class="dropdown-divider"></div>
-              <%= link_to "Solicitations",  solicitations_path, class:"dropdown-item"%>
               <a class="dropdown-item" href="#">Open projects</a>
               <a class="dropdown-item" href="#">Closed projects</a>
             </div>
@@ -51,7 +50,7 @@
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
-      
+
         <li class="nav-item">
           <span class="nav-link" data-toggle="modal" data-target="#exampleModalCenter">Register</span>
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

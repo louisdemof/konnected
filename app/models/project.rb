@@ -14,6 +14,7 @@ class Project < ApplicationRecord
   has_many_attached :photos
   has_many_attached :intermediary_attachments
   monetize :price_cents
+  validates :status , inclusion: { in: ["new","general_info","page_stage","feature_stage","published","assigned","confirmed","inspection"] }
 
   before_save :project_level, if: :will_save_change_to_status?
 
