@@ -1,14 +1,29 @@
 <div class="container">
-  <h2>List of all the solicitations for <%=@project.name%></h2>
+  <h2>Applications for: "<%=@project.name%>"</h2>
   <ul>
     <% @project.solicitations.each do |solicitation| %>
-        <%=" #{solicitation.user.first_name} #{solicitation.user.last_name} "%>
-        <%=" #{solicitation.comment} "%>
-        <%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%>
-        <div>
-          <%= simple_form_for(solicitation, url: validate_solicitation_path(solicitation), html: {method: :patch}) do |f| %>
+        <div class="card-product my-3">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+            <h2><%=" #{solicitation.user.first_name} #{solicitation.user.last_name} "%></h2>
+            <p class=""> <%=link_to "", "#{solicitation.user.linkedin_profile}", target:"_blank", class: "fab fa-linkedin fa-2x" %></p>
+            <p class=""> <%=link_to "Check #{solicitation.user.first_name}'s website", "#{solicitation.user.website_1}", target:"_blank" %></p>
+            <% if solicitation.user.website_2.blank? %>
+            <%else %>
+              <p><%=" #{solicitation.user.website_2} "%></p>
+            <% end %>
+            <% if solicitation.user.website_3.blank? %>
+            <%else %>
+              <p><%=" #{solicitation.user.website_3} "%></p>
+            <% end %>
+            <p>P<%=" #{solicitation.comment} "%></p>
+            <p><%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%></p>
+          </div>
+          <div>
+            <%= simple_form_for(solicitation, url: validate_solicitation_path(solicitation), html: {method: :patch}) do |f| %>
             <%= f.button :submit , value: "Accepted", class: "btn btn-success"%>
           <% end %>
+          </div>
         </div>
     <% end %>
   </ul>
