@@ -76,7 +76,7 @@ User.where(student: false).each do |user|
 end
 
 # Seed for projecs
-@clients = User.where(student: fals)
+@clients = User.where(student: false)
 Project.create!(name:"Project 1", user: @clients.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: "published", deadline: Faker::Date.in_date_period, description:"challenging project", pages: [page_1, page_3, page_4], features: [feature_1, feature_3])
 Project.create(name:"Project 2", user: @clients.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: "published", deadline: Faker::Date.in_date_period, description:"complex project", pages: [page_1,page_3], features: [feature_6, feature_4])
 Project.create(name:"Project 3", user: @clients.sample, level: [level_1, level_2, level_3, level_4, level_5].sample, status: "published", deadline: Faker::Date.in_date_period, description:"project for newcomers", pages: [page_3])
