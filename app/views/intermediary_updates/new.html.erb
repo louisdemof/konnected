@@ -4,6 +4,7 @@
     <%= f.input :description %>
     <%= f.input :url %>
     <%= f.input :documents, as: :file, input_html: { multiple: true }, label: "Add attachments here (optional):"%>
+    <%= f.input :accomplished, as: :boolean, checked_value: true, unchecked_value: false, :label => 'Is your project finished? (ONCE YOU CHECK THIS BOX, THE CLIENT WILL CONFIRM YOUR PROJECT', :input_html => { :value => :true } %>
     <%= f.submit "Publish update", class:"btn btn-primary" %>
   <% end %>
 </div>

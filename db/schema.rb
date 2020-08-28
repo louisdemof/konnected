@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_115913) do
+ActiveRecord::Schema.define(version: 2020_08_28_112004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_115913) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "solicitation_id", null: false
+    t.boolean "accomplished", default: false
     t.index ["solicitation_id"], name: "index_intermediary_updates_on_solicitation_id"
   end
 

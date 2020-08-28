@@ -21,6 +21,18 @@ class ProjectsController < ApplicationController
     redirect_to project_path(@project), notice: "The first step of your project has been created"
   end
 
+  def confirm_project
+    @project = Project.find(params[:id])
+    @solicitation = @project.solicitations.find_by(status: "Accepted")
+    @project.status = "confirmed"
+    if @project.save
+      redirect_to project_path(@project)
+    else
+      root_path
+    end
+
+  end
+
   def edit
     @project = Project.find(params[:id])
   end
