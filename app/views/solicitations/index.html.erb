@@ -2,29 +2,61 @@
   <h2>Applications for: "<%=@project.name%>"</h2>
   <ul>
     <% @project.solicitations.each do |solicitation| %>
-        <div class="card-product my-3">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-            <h2><%=" #{solicitation.user.first_name} #{solicitation.user.last_name} "%></h2>
-            <p class=""> <%=link_to "", "#{solicitation.user.linkedin_profile}", target:"_blank", class: "fab fa-linkedin fa-2x" %></p>
-            <p class=""> <%=link_to "Check #{solicitation.user.first_name}'s website", "#{solicitation.user.website_1}", target:"_blank" %></p>
-            <% if solicitation.user.website_2.blank? %>
-            <%else %>
-              <p><%=" #{solicitation.user.website_2} "%></p>
-            <% end %>
-            <% if solicitation.user.website_3.blank? %>
-            <%else %>
-              <p><%=" #{solicitation.user.website_3} "%></p>
-            <% end %>
-            <p>P<%=" #{solicitation.comment} "%></p>
-            <p><%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%></p>
-          </div>
-          <div>
-            <%= simple_form_for(solicitation, url: validate_solicitation_path(solicitation), html: {method: :patch}) do |f| %>
-            <%= f.button :submit , value: "Accepted", class: "btn btn-success"%>
-          <% end %>
+      <div class="card-product my-3">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <div class="card-product-infos">
+          <div class="d-flex flex-row">
+            <div class="d-flex flex-column mw-50">
+              <h2><%=" #{solicitation.user.first_name} #{solicitation.user.last_name} "%></h2>
+              <div class="d-flex flex-row">
+                <p class="p-2"> <%=link_to "", "#{solicitation.user.phone_number}", target:"_blank", class: "fas fa-phone fa-2x" %></p>
+                <p class="p-2"> <%=link_to "", "#{solicitation.user.linkedin_profile}", target:"_blank", class: "fab fa-linkedin fa-2x" %></p>
+              </div>
+              <h4><%=" #{solicitation.user.first_name}"%>'s portfolio:</h4>
+              <div class="d-flex flex-row">
+                 <p class="py-2 pr-2 mt-0"> <%=link_to "", "#{solicitation.user.website_1}", target:"_blank", class: "fas fa-link 2x" %></p>
+                <% if solicitation.user.website_2.blank? %>
+                <%else %>
+                  <p class="py-2 pr-2 mt-0"> <%=link_to "", "#{solicitation.user.website_2}", target:"_blank", class: "fas fa-link 2x" %></p>
+                <% end %>
+                <% if solicitation.user.website_3.blank? %>
+                <%else %>
+                  <p class="py-2 pr-2 mt-0"> <%=link_to "", "#{solicitation.user.website_3}", target:"_blank", class: "fas fa-link 2x" %></p>
+                <% end %>
+              </div>
+            </div>
+            <div class="d-flex flex-column mw-50 ">
+              <h4>What <%=" #{solicitation.user.first_name}"%> has to say on this project:</h4>
+              <div class="important-text w-100">
+                <p><%=" #{solicitation.comment} "%></p>
+              </div>
+              <p>Member since:<%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%></p>
+              <div>
+                <%= simple_form_for(solicitation, url: validate_solicitation_path(solicitation), html: {method: :patch}) do |f| %>
+                  <%= f.button :submit , value: "Accepted", class: "btn"%>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
     <% end %>
   </ul>
+<div class="stats-desc">
+  <ul class="user-stats">
+    <li>From<strong>Pakistan</strong>
+    </li><li>Member since<strong>Jun 2016</strong>
+    </li><li>Avg. response time<strong>1 hour</strong></li>
+    <li>Last delivery<strong>about 11 hours</strong></li>
+  </ul>
+  <hr>
+  <article class="seller-desc">
+    <div class="inner">"Creativeartmarketing" located in Techni World.
+    We are a group of professional, creative designer and also qualified developers. Accepting Orders Now...
+</div>
+<button class="read-more">+ See More</button></article></div>
+
+
+
+
 </div>
