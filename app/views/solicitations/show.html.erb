@@ -1,6 +1,10 @@
     <div class="container d-flex flex-column align-items-center my-4">
       <h2 class="">Updates</h2>
-      <%= link_to "Project details", project_path(@project), class:"btn btn-outline-primary" %>
+      <% if current_user.student %>
+        <%= link_to "Add update", new_project_solicitation_intermediary_update_path(@project, @solicitation, @intermediary_update), class:"btn btn-outline-primary" %>
+      <% else %>
+        <%= link_to "Project details", project_path(@project), class:"btn btn-outline-primary" %>
+      <% end %>
     </div>
   
   <div class="container d-flex flex-column align-items-center">
@@ -16,11 +20,18 @@
             <%= update.description %>
           </p>
           <% unless update.url.empty? %>
-            <p class="card-text"><%= link_to "Click here to see the update", "#{update.url}"%></p>
+            <p class="card-text"><%= link_to "Click here to see the update", "#{update.url}", target:"_blank"%></p>
           <% end %>
           <% if update.documents %>
             <p class="card-text">show documents</p>
           <%end%>
+          <% if update.accomplished && current_user.student == false %>
+            <%= simple_form_for(@project, url: confirm_project_path(@project), html: {method: :patch}) do |f| %>
+              <%= f.button :submit , value: "Confirmed", class: "btn btn-primary my-2"%>
+            <% end %>
+
+            <%= link_to "Ask for a control", "#", class:"btn btn-outline-danger"%>
+          <% end %>
         </div>
         <div>
       

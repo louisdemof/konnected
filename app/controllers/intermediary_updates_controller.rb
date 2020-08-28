@@ -25,6 +25,6 @@ class IntermediaryUpdatesController < ApplicationController
   private
 
   def params_intermediary_updates
-    params.require(:intermediary_update).permit(:description, :url, documents: [])
+    params.require(:intermediary_update).permit(:description, :url, :accomplished, documents: [])
   end
 end

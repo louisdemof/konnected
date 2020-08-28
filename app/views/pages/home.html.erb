@@ -49,7 +49,7 @@
                   <p class="card-text btn-border-success">Project open for applications</p>
                   <% if project.solicitations.empty?%>
                    <button class="btn btn-secondary text-center" disabled>No applications yet</button>
-                  <% else %>
+                  <% else%>
                     <%= link_to "See applications", project_solicitations_path(project), class:"btn btn-primary"%>
                   <%end %>
                   <%= link_to "Project details", project_path(project), class:"btn btn-outline-primary my-2" %>
@@ -58,8 +58,13 @@
                   <p class="card-text btn-border-success">Project assigned to ...</p>
                    <%= link_to "Go to your dashboard", solicitation_path(@solicitation), class:"btn btn-primary text-center"%>
                   <%= link_to "Project details", project_path(project), class:"btn btn-outline-primary my-2" %>
-                <% elsif project.status == "closed"%>
-                  <p class="card-text btn-border-success">Project closed</p>
+                <% elsif project.status == "confirmed"%>
+                  <p class="card-text btn-border-success">Project finished</p>
+                  <button class="btn btn-secondary text-center my-2" disabled>This project is finished</button>
+                  <%= link_to "See details", "#", class:"btn btn-outline-primary"%>
+                <% elsif project.status == "inspection"%>
+                  <p class="card-text btn-border-success text-red">Project being inspected</p>
+                  <button class="btn btn-secondary text-center my-2" disabled>This project is being inspected</button>
                   <%= link_to "See details", "#", class:"btn btn-outline-primary"%>
                 <% elsif project.status == "general-info" %>
                   <p class="card-text btn-border-success">Only 3 steps to finish your project</p>
