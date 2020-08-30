@@ -49,6 +49,6 @@ class SolicitationsController < ApplicationController
   private
 
   def solicitation_params
-    params.require(:solicitation).permit(:user_id, :project_id, :comment, :status)
+    params.require(:solicitation).permit(:user_id, :project_id, :comment, :status, :photo)
   end
 end
