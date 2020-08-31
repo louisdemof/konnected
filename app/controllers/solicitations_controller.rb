@@ -23,7 +23,11 @@ class SolicitationsController < ApplicationController
 
   def validate
     @solicitation = Solicitation.find(params[:id])
-    @solicitation.update!(status: params[:commit])
+    @status = params[:commit]
+    if @status == "Select this dev"
+     @solicitation.update!(status: "Accepted")
+
+    end
     @project = @solicitation.project
     @solicitation.save
     @project.solicitations.each do |solicitation|
