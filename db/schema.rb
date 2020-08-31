@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_08_28_112004) do
 
   # These are extensions that must be enabled in order to support this database
@@ -124,6 +125,15 @@ ActiveRecord::Schema.define(version: 2020_08_28_112004) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "solicitation_id", null: false
+    t.integer "score"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["solicitation_id"], name: "index_reviews_on_solicitation_id"
+  end
+
   create_table "solicitations", force: :cascade do |t|
     t.string "status", default: "Pending"
     t.bigint "user_id"
@@ -168,5 +178,6 @@ ActiveRecord::Schema.define(version: 2020_08_28_112004) do
   add_foreign_key "orders", "users"
   add_foreign_key "projects", "levels"
   add_foreign_key "projects", "users"
+  add_foreign_key "reviews", "solicitations"
   add_foreign_key "users", "levels"
 end

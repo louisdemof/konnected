@@ -4,14 +4,16 @@ Rails.application.routes.draw do
   patch 'solicitations/:id/validate', to: "solicitations#validate", as: :validate_solicitation
   patch 'solicitations/:id/confirm_project', to: "projects#confirm_project", as: :confirm_project
   mount StripeEvent::Engine, at: '/stripe-webhooks'
-  resources :solicitations, only: [:show, :destroy]
+  resources :solicitations, only: [:index, :show, :destroy] do
+    resources :reviews, only: [:new, :create]
+  end
+  resources :reviews, only: [:index, :show, :destroy]
+  resources :users, only: [:show, :index]
   resources :projects, except: [:destroy] do
     resources :project_pages, only: [:new, :create, :destroy]
     resources :project_features, only: [:new, :create, :destroy]
-    resources :solicitations, only: [:new, :create, :index] do
-      resources :intermediary_updates, only: [:index, :new, :create, :edit, :update, :destroy, :show] do
-        resources :comments, only: :create
-      end
+    resources :solicitations, only: [:new, :create] do
+      resources :intermediary_updates, only: [:index, :new, :create, :edit, :update, :destroy, :show]
     end
   end
 

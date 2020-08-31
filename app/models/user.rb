@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :solicitations
   has_many :orders
   has_many :projects
+  has_many :reviews ,through: :solicitations
   has_one_attached :photo
 
   # Include default devise modules. Others available are:
