@@ -14,9 +14,11 @@
      <p><%=" #{solicitation.comment} "%></p>
     <div class="buttons">
 
+  <!-- The value of the button is important for the change of status, if it
+    changes, the validate method in thesolicitation controller needs to be modified accordingly -->
       </button>
        <%= simple_form_for(solicitation, url: validate_solicitation_path(solicitation), html: {method: :patch}) do |f| %>
-                  <%= f.button :submit , 'Select this dev', value: "Accepted", class: "btn btn-primary"%>
+                  <%= f.button :submit, 'Select this dev', value: "Select this dev", class: "btn btn-primary"%>
        <% end %>
        <div class="d-flex flex-row justify-content-center mb-0">
         <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.phone_number}", target:"_blank", class: "fas fa-phone fa-2x" %></p>
@@ -31,7 +33,7 @@
           <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.website_3}", target:"_blank",  class:"fas fa-desktop fa-2x" %></p>
         <% end %>
     </div>
-    <p>Member since:<%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%></p>
+    <p >Member since:<%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%></p>
     <div class="skills">
       <h6 class="text-white">Skills</h6>
       <ul>
