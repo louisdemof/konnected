@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :projects
   has_many :reviews ,through: :solicitations
   has_one_attached :photo
+  has_many :notifications, foreign_key: :recipient_id
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -16,6 +16,10 @@ class IntermediaryUpdatesController < ApplicationController
     @intermediary_update = IntermediaryUpdate.new(params_intermediary_updates)
     @intermediary_update.solicitation = @solicitation
     if @intermediary_update.save!
+      # Use the code below to create new notifications anywhere
+      user = @solicitation.project.user
+      Notification.create(recipient: user, actor: current_user, action: "posted", notifiable: @intermediary_update )
+      # until here
       redirect_to solicitation_path(@solicitation), notice: "Congrats, you added an update on this project!"
     else 
       render :new
