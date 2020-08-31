@@ -1,8 +1,10 @@
 <div class="container">
-  <h1 class="my-3">User</h1>
-  <%= simple_form_for(@user) do |f| %>
-    <input type="hidden" name="project[status]" value="page_stage">
-    <%= f.input :username %>
-    <%= f.submit %>
+  <h1 class="my-3">My profile page</h1>
+
+  <h2 class="my-3">My reviews</h2>
+  <% @user.reviews.each do |review| %>
+    <%= review.score %>
+    <%= review.comment %>
   <% end %>
 </div>
+

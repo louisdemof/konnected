@@ -112,12 +112,12 @@ ActiveRecord::Schema.define(version: 2020_08_27_095055) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "application_id"
+    t.bigint "solicitation_id", null: false
     t.integer "score"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["application_id"], name: "index_reviews_on_application_id"
+    t.index ["solicitation_id"], name: "index_reviews_on_solicitation_id"
   end
 
   create_table "solicitations", force: :cascade do |t|
@@ -157,5 +157,6 @@ ActiveRecord::Schema.define(version: 2020_08_27_095055) do
   add_foreign_key "orders", "users"
   add_foreign_key "projects", "levels"
   add_foreign_key "projects", "users"
+  add_foreign_key "reviews", "solicitations"
   add_foreign_key "users", "levels"
 end
