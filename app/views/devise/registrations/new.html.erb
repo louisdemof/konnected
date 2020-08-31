@@ -21,6 +21,15 @@
                     as: :select,
                     collection: 1..7,
                     label: "Select how many days a week you are available on average" %>
+        <%= f.input :linkedin_profile,
+                    label: "Add your linkedin profile url here (optional):"%>
+        <%= f.input :website_1,
+                    label: "Add your website here (optional):"%>
+        <%= f.input :website_2,
+                    label: "Add another of you website here (optional):"%>
+        <%= f.input :website_3,
+                    label: "Add another of your website here (optional):"%>
+        <%= f.input :photo, as: :file, input_html: { multiple: false }, label: "Add a picture here (optional):"%>
         <%= f.input :email,
                     required: true,
                     autofocus: true,
@@ -45,6 +54,8 @@
   <div class="container my-3 w-50">
   <h2>Sign up</h2>
     <div class="form-inputs">
+      <%= f.input :company_name,
+                  required: true %>
       <%= f.input :first_name,
                   required: true %>
       <%= f.input :last_name,

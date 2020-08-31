@@ -27,8 +27,55 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+// import { initSelect2 } from '../components/init_select2';
+import { InitPriceTotal } from './price_total';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  InitPriceTotal();
 });
+
+//function myFunction() {
+  // Get the checkbox
+  //var checkBox = document.getElementById("checkbox");
+  // Get the output text
+  //var text = document.getElementById("text");
+
+  // If the checkbox is checked, display the output text
+  //if (checkBox.checked == true){
+    //text.style.display = "block";
+  //} else {
+    //text.style.display = "none";
+  //}
+//}
+
+
+// const checkboxGroup =document.querySelector("fieldset")
+// const checkboxGroup1 =document.querySelector("fieldset")
+// const form =document.querySelector("form")
+// const total = 0
+// var result1 = 0
+
+
+
+// form.addEventListener("submit", (event) => {
+//   total = result1
+// });
+
+// checkboxGroup1.addEventListener("change", (event) => {
+//   var result = 0
+//   checkboxs.forEach(checkbox => {
+//     if (checkbox.checked === true) {
+//     const price = document.getElementById(checkbox.value).innerText;
+//     const amount = parseInt(price);
+//     result = result + amount;
+//     }
+//   })
+//   document.getElementById('price').innerHTML = totel + result/100;
+// });
+
+
+
+
+

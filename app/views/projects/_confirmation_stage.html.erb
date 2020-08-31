@@ -1,9 +1,15 @@
+<div class="progress" style='height: 30px'>
+  <div class="progress-bar bg-success" role="progressbar" style="width: 33%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">Add pages to your project</div>
+  <div class="progress-bar bg-success" role="progressbar" style="width: 33%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Add features to your project</div>
+  <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Confirm your project</div>
+</div>
+
 <div class="container">
   <h1 class="my-3">Project Confirmation</h1>
   <div>
     <h2>Add recap of the price here</h2>
     <div class="col-sm  rounded px-3 small_card">
-        <p> price: <%= humanized_money_with_symbol(@project.price) %> </p>
+        <p> price: <%= @project.total_price / 100 %> euro </p>
       </div>
   </div>
   <%= simple_form_for(Order.new) do |f| %>

@@ -14,6 +14,7 @@ class Project < ApplicationRecord
   has_many_attached :photos
   has_many_attached :intermediary_attachments
   monetize :price_cents
+  validates :status , inclusion: { in: ["new","general_info","page_stage","feature_stage","published","assigned","confirmed","inspection"] }
 
   before_save :project_level, if: :will_save_change_to_status?
 
@@ -41,5 +42,16 @@ class Project < ApplicationRecord
     else
       self.level = Level.find_by(name: "Level 5")
     end
+  end
+
+  def total_price
+    total = 0
+    features.each do |feature|
+      total+=feature.amount_cents
+        end
+      pages.each do |page|
+        total+=page.amount_cents
+        end
+    return total
   end
 end
