@@ -1,1 +1,1 @@
-<p><%= "#{notification.actor.first_name} #{notification.action} a new update to #{notification.notifiable.solicitation.project.name} #{((Time.now - notification.created_at)/3600).round} hour(s) ago"%></p>
+<p class="mb-0"><%= "#{notification.actor.first_name} #{notification.action} a new update to #{notification.notifiable.solicitation.project.name} #{((Time.now - notification.created_at)/3600).round} hour(s) ago"%></p>
