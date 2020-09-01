@@ -28,9 +28,11 @@
           </li>
         <% else %>
           <li class= "nav-item btn-group" data-behavior="notifications">
-            <a class="dropdown-toggle nav-link" type="button" data-behavior="notifications-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="far fa-bell" id="bell"></i>
+            <a class="dropdown-toggle nav-link" type="button" data-behavior="notifications-link" id="bell" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-bell"></i><span class="badge badge-light"><%= render 'notifications/notif_badge'%></span>
+
             </a>
+
             <div class="dropdown-menu inside-page" id="navbar-notification" data-user-id="<%=current_user.id%>" aria-labelledby="dropdownMenu1" data-behavior="notification-items">
               <% current_user.notifications.reverse.each do |notification| %>
                 <a class="dropdown-item" href="#"><%= render 'notifications/notif', notification: notification %> </a>

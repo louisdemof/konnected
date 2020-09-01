@@ -4,6 +4,9 @@ const markAsRead = () => {
   const bell = document.querySelector('#bell');
     bell.addEventListener('click', (event) => {
   // Callback
+      const notifCounter = document.querySelector('.badge')
+      // Add one to the number
+      notifCounter.innerText = 0
      fetch("/notifications/mark_as_read", {
       method: "POST",
       headers: {
@@ -17,4 +20,5 @@ const markAsRead = () => {
       });
     });
 }
-export {markAsRead}
+export {markAsRead};
+
