@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   has_many :features, through: :project_features
   has_many :project_pages
   has_many :pages, through: :project_pages
+  has_many :intermediary_updates, through: :solicitations
   belongs_to :user
   belongs_to :level
   validates :name, presence: true
