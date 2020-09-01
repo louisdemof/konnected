@@ -11,6 +11,8 @@ const initNotificationCable = () => {
         // Add one to the number
         let counter = parseInt(notifCounter.innerText) + 1
         notifCounter.innerText = `${counter}`
+        notifCounter.classList.remove("badge-light")
+        notifCounter.classList.add("badge-danger")
 
         notificationsContainer.insertAdjacentHTML('afterbegin', data) ;
      // notificationsContainer.insertAdjacentHTML('beforeend', data) ; // called when data is broadcast in the cable
