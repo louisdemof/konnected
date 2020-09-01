@@ -1,1 +1,28 @@
-<p class="mb-0"><%= "#{notification.actor.first_name} #{notification.action} a new update to #{notification.notifiable.solicitation.project.name} #{((Time.now - notification.created_at)/3600).round} hour(s) ago"%></p>
+<div class="px-3">
+  <%if notification.action == "posted" %>
+    <p class="mb-0"><%=link_to Rails.application.routes.url_helpers.solicitation_path(notification.notifiable.solicitation) do %>
+      <i class="fas fa-edit"></i>
+      <%= "#{notification.actor.first_name} #{notification.action}"%>
+      an update to
+      <%= "#{notification.notifiable.solicitation.project.name}."%>
+    <% end %>
+    </p>
+  <% elsif notification.action =="completed" %>
+    <p class="mb-0">
+      <%=link_to Rails.application.routes.url_helpers.solicitation_path(notification.notifiable.solicitation) do %>
+      <i class="fas fa-clipboard-check"></i>
+      <%= "#{notification.actor.first_name} #{notification.action}"%>
+      <%= "#{notification.notifiable.solicitation.project.name}."%>
+    <% end %>
+    </p>
+  <% elsif notification.notifiable_type == "Solicitation" %>
+    <p class="mb-0"><%=link_to  Rails.application.routes.url_helpers.project_solicitations_path(notification.notifiable.project) do %>
+      <i class="fas fa-user-check"></i>
+      <%= "#{notification.actor.first_name} #{notification.action}"%>
+      to
+      <%= "#{notification.notifiable.project.name}."%>
+    <% end %>
+    </p>
+  <% end %>
+  <p class="m-0"> <%= render 'notifications/timing', notification: notification%></p>
+</div>

@@ -7,6 +7,6 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read_at: nil)}
 
   def broadcast_notification
-    NotificationChannel.broadcast_to(recipient, ApplicationController.new.render_to_string(partial: 'notifications/notif', locals: {notification: self}))
+   NotificationChannel.broadcast_to(recipient, ApplicationController.new.render_to_string(partial: 'notifications/notif', locals: {notification: self }) )
   end
 end
