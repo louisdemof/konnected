@@ -4,5 +4,9 @@ class UsersController < ApplicationController
     @level = @user.level
     @project = @user.projects
     @solicitations = @user.solicitations
+
+    url = "https://api.github.com/users/#{@user.github_username}"
+    user_serialized = open(url).read
+    @github_user = JSON.parse(user_serialized)
   end
 end

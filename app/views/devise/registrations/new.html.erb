@@ -21,6 +21,9 @@
                     as: :select,
                     collection: 1..7,
                     label: "Select how many days a week you are available on average" %>
+        <%= f.input :github_username,
+                    required: true,
+                    label: "Add your github username here (required):"%>
         <%= f.input :linkedin_profile,
                     label: "Add your linkedin profile url here (optional):"%>
         <%= f.input :website_1,
