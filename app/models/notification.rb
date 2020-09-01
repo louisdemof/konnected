@@ -4,7 +4,7 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
   after_create :broadcast_notification
 
-  scope :unread, -> { where(read_at: nil)}
+  scope :unread, -> { where(read: false)}
 
   def broadcast_notification
    NotificationChannel.broadcast_to(recipient, ApplicationController.new.render_to_string(partial: 'notifications/notif', locals: {notification: self }) )
