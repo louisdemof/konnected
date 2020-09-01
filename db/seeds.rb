@@ -102,7 +102,17 @@ end
 end
 
 # Seed for Solicitation
-Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
-Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
-Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
-Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+solicitation_1 = Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+solicitation_2 = Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+solicitation_3 = Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+solicitation_4 = Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+solicitation_5 = Solicitation.create(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+solicitation_6 = Solicitation.create!(status: ["Pending", "Accepted", "Denied"].sample, user: User.all.sample, project: Project.all.sample)
+
+# Seed for review
+Review.create!(score: 5, comment: "well done", solicitation: solicitation_1)
+Review.create(score: 4, comment: "good job", solicitation: solicitation_2)
+Review.create(score: 3, comment: "overall the result was satisfying", solicitation: solicitation_3)
+Review.create(score: 2, comment: "room for improvement", solicitation: solicitation_4)
+Review.create(score: 1, comment: "basics weren't covered", solicitation: solicitation_5)
+Review.create!(score: 0, comment: "basics weren't covered", solicitation: solicitation_5)

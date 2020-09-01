@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(version: 2020_09_01_124100) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.string "action"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "read", default: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "state"
     t.string "checkout_session_id"
@@ -124,6 +135,15 @@ ActiveRecord::Schema.define(version: 2020_09_01_124100) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "solicitation_id", null: false
+    t.integer "score"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["solicitation_id"], name: "index_reviews_on_solicitation_id"
+  end
+
   create_table "solicitations", force: :cascade do |t|
     t.string "status", default: "Pending"
     t.bigint "user_id"
@@ -169,5 +189,6 @@ ActiveRecord::Schema.define(version: 2020_09_01_124100) do
   add_foreign_key "orders", "users"
   add_foreign_key "projects", "levels"
   add_foreign_key "projects", "users"
+  add_foreign_key "reviews", "solicitations"
   add_foreign_key "users", "levels"
 end

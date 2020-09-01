@@ -15,7 +15,9 @@ class SolicitationsController < ApplicationController
     @solicitation.user_id = current_user.id
     @solicitation.project_id = @project.id
     if @solicitation.save!
-      redirect_to project_solicitations_path(@project), notice: "Congrats, you applied!"
+      user = @solicitation.project.user
+      Notification.create!(recipient: user, actor: current_user, action: "applied", notifiable: @solicitation)
+      redirect_to root_path, notice: "Congrats, you applied!"
     else
       render :new
     end
@@ -23,7 +25,10 @@ class SolicitationsController < ApplicationController
 
   def validate
     @solicitation = Solicitation.find(params[:id])
-    @solicitation.update!(status: params[:commit])
+    @status = params[:commit]
+    if @status == "Select this dev"
+     @solicitation.update!(status: "Accepted")
+    end
     @project = @solicitation.project
     @solicitation.save
     @project.solicitations.each do |solicitation|

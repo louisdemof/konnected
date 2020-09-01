@@ -7,11 +7,17 @@ class CommentsController < ApplicationController
     @solicitation = @intermediary_update.solicitation
     @comment.user = current_user
     if @comment.save!
-      redirect_to solicitation_path(@solicitation)
+      IntermediaryUpdateChannel.broadcast_to(
+      @intermediary_update, 
+      render_to_string(partial: "comment", locals: { comment: @comment})
+      )
+      redirect_to solicitation_path(@solicitation, anchor: "comment-#{@comment.id}")
     else
       render "solicitation/show"
     end
   end
+
+
 
   private 
 
