@@ -22,7 +22,7 @@
             <% @average += solicitation.review.score %>
             <% end %>
             <% @average_rating = @average/@solicitations.count%>
-            <p> Rating: <%= @average_rating %> </p>
+            <p> Average rating: <%= select_tag "score", options_for_select((0..4).to_a, @average_rating - 1), class: "review-score" %></p>
             <p> Member since: <%=@user.created_at.strftime("%d of %B, %Y")%> </p>
         </div>
       </div>
@@ -61,6 +61,8 @@
                       <% updates.each do |update| %>
                       <a href= "<%=update.url%>" class="btn btn-primary">Project website</a>
                       <% end %>
+                       <%= select_tag "score", options_for_select((0..4).to_a, solicitation.review.score - 1), class: "review-score" %>
+
                       <p class="card-text">Rating: <span class="primary-color bold"><%= solicitation.review.score %></span></p>
                     </div>
                   </div>

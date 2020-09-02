@@ -2,6 +2,7 @@ import { csrfToken } from "@rails/ujs";
 
 const markAsRead = () => {
   const bell = document.querySelector('#bell');
+    if(bell){
     bell.addEventListener('click', (event) => {
   // Callback
       const notifCounter = document.querySelector('.badge')
@@ -26,6 +27,7 @@ const markAsRead = () => {
     }
     , 2500 )
     });
+    }
 }
 export {markAsRead};
 

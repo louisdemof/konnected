@@ -3,7 +3,7 @@
   <%= simple_form_for [@solicitation, @review] do |f| %>
     <input type="hidden" name="project[status]" value="general_info">
     <%= f.input :comment, placeholder: "well done!", label: "Write a review for your student" %>
-    <%= f.input :score, collection: (0..5).to_a, label: "Rate the work of your student" %>
+    <%= f.input :score, collection: (0..4).to_a, label: "Rate the work of your student" %>
     <%= f.submit "Submit", class: "btn btn-primary my-3"%>
   <% end %>
 </div>
