@@ -68,6 +68,22 @@ p {
 
 // Cards on home page 
 .feature-home {
-  font-size: 40px;
+  font-size: 35px;
   color: $blue;
+}
+
+.feature-col {
+  text-align: right;
+}
+
+.card-homepage p {
+  line-height: 200%;
+}
+
+.card-homepage h2{
+  margin-bottom: 3%;
+}
+
+.card-homepage {
+  border-left: solid $blue 2px;
 }
