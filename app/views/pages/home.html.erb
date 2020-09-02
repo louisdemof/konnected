@@ -103,25 +103,6 @@
       
 
 <% else %>
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_path "banner.jpg" %>');">
-  <div class="container d-flex align-items-center flex-column">
-    <h1>Konnected brings <strong>tech alumni</strong> to <strong>small companies</strong>!</h1>
-    <p>No need to invest huge amounts to develop your project.</p>
-    <div class="d-flex">
-      <form method="GET" action="/users/sign_up">
-        <input type="hidden" id="custId" name="student" value="false">
-        <button type="submit" class="btn btn-primary mx-3">
-          Start your project
-        </button>
-      </form>
-      <form method="GET" action="/users/sign_up">
-        <input type="hidden" id="custId" name="student" value="true" >
-        <button type="submit" class="btn btn-outline-light mx-3">
-          Register as student
-        </button>
-      </form>
-    </div>
-  </div>
-</div>
+  <%= render 'pages/not_signed_in'%>
 <% end %>
 
