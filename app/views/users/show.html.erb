@@ -4,7 +4,7 @@
     <div class="col-12">
       <div class="media mt-4 border border-dark">
         <% if @user.photo.attached? %>
-        <img class="mr-3" src="<%= cl_image_path @user.photo.key, height: 300, width: 400, crop: :fill %>" alt="Generic placeholder image">
+        <img class="mr-3" src="<%= cl_image_path @user.photo.key, height: 320, width: 400, quality: "auto", :gravity=>"auto", :background=>"auto", :crop=>"fill_pad" %>" alt="Generic placeholder image">
         <% else %>
         <img class="mr-3" style= "height: 300px;" src="<%= image_path "logo.png" %>" alt="Generic placeholder image">
         <% end %>
