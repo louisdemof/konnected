@@ -68,7 +68,8 @@ User.create!(
     address: "Rue Félicien Delince 14, 1160, Auderghem" ,
     phone_number: "0498827393",
     student: true,
-    level: Level.all.sample
+    level: Level.all.
+    github_username: "louisdemof"
   )
 #Seed for adding company name to companies
 
