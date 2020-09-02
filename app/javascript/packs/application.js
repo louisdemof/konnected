@@ -28,16 +28,18 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 // import { initSelect2 } from '../components/init_select2';
-import { InitPriceTotal } from './price_total';
+import { initPriceTotal } from './price_total';
 import { initIntermediaryUpdateCable } from '../channels/intermediary_update_channel';
 import { initNotificationCable } from '../channels/notification_channel';
 import { markAsRead} from './notification';
 import { loadDynamicBannerText } from './banner';
+import { insertPages } from './insert_pages';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
- // InitPriceTotal();
+  insertPages();
+  initPriceTotal();
   initIntermediaryUpdateCable();
   initNotificationCable();
   markAsRead();

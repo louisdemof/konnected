@@ -4,7 +4,7 @@
     <div class="col-12">
       <div class="media mt-4 border border-dark">
         <% if @user.photo.attached? %>
-        <img class="mr-3" src="<%= cl_image_path @user.photo.key, height: 300, width: 400, crop: :fill %>" alt="Generic placeholder image">
+        <img class="mr-3" src="<%= cl_image_path @user.photo.key, height: 320, width: 400, quality: "auto", :gravity=>"auto", :background=>"auto", :crop=>"fill_pad" %>" alt="Generic placeholder image">
         <% else %>
         <img class="mr-3" style= "height: 300px;" src="<%= image_path "logo.png" %>" alt="Generic placeholder image">
         <% end %>
@@ -17,7 +17,12 @@
             <% if @user.linkedin_profile %>
             <p> LinkedIn: <%=@user.linkedin_profile%> </p>
             <% end %>
-            <p> Reviews: </p>
+            <% @average = 0 %>
+            <% @solicitations.each do |solicitation| %>
+            <% @average += solicitation.review.score %>
+            <% end %>
+            <% @average_rating = @average/@solicitations.count%>
+            <p> Average rating: <%= select_tag "score", options_for_select((0..4).to_a, @average_rating - 1), class: "review-score" %></p>
             <p> Member since: <%=@user.created_at.strftime("%d of %B, %Y")%> </p>
         </div>
       </div>
@@ -56,6 +61,9 @@
                       <% updates.each do |update| %>
                       <a href= "<%=update.url%>" class="btn btn-primary">Project website</a>
                       <% end %>
+                       <%= select_tag "score", options_for_select((0..4).to_a, solicitation.review.score - 1), class: "review-score" %>
+
+                      <p class="card-text">Rating: <span class="primary-color bold"><%= solicitation.review.score %></span></p>
                     </div>
                   </div>
                 </div>

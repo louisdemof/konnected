@@ -3,13 +3,13 @@
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#">General information</a>
+          <a class="nav-link active" href="/projects/<%=@project.id%>/edit">General information</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Add pages</a>
+          <%= link_to "Add pages", project_path(@project, params: { project: { status: "general_info" } }), method: :put, remote: true, class: "nav-link " %>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Add features</a>
+          <%= link_to "Add features", project_path(@project, params: { project: { status: "page_stage" } }), method: :put, remote: true, class: "nav-link " %>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Confirm</a>
@@ -26,7 +26,7 @@
         <%= f.input :deadline, as: :date, label: "Project Deadline", start_year: Date.today.year  , end_year: Date.today.year + 10,  order: [:day, :month, :year], include_blank: false %>
         <%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Add pictures here (optional):"%>
         <%= f.input :attachments, as: :file, input_html: { multiple: true }, label: "Add attachments here (optional):"%>
-        <%= f.submit "Create", class: "btn btn-primary my-3"%>
+        <%= f.submit "Update", class: "btn btn-primary my-3"%>
       <% end %>
     </div>
   </div>
