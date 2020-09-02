@@ -31,8 +31,10 @@ import "bootstrap";
 import { initPriceTotal } from './price_total';
 import { initIntermediaryUpdateCable } from '../channels/intermediary_update_channel';
 import { initNotificationCable } from '../channels/notification_channel';
-import { markAsRead } from './notification';
+import { markAsRead} from './notification';
+import { loadDynamicBannerText } from './banner';
 import { insertPages } from './insert_pages';
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
@@ -41,6 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   initIntermediaryUpdateCable();
   initNotificationCable();
   markAsRead();
+  loadDynamicBannerText();
 });
 import { initStarRating } from '../plugins/init_star_rating';
 
