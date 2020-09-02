@@ -4,6 +4,14 @@ const markAsRead = () => {
   const bell = document.querySelector('#bell');
     bell.addEventListener('click', (event) => {
   // Callback
+      const notifCounter = document.querySelector('.badge')
+        notifCounter.classList.remove("badge-danger")
+        notifCounter.classList.add("badge-light")
+
+      // Add one to the number
+      notifCounter.innerText = 0
+     setTimeout( () => { 
+
      fetch("/notifications/mark_as_read", {
       method: "POST",
       headers: {
@@ -13,8 +21,11 @@ const markAsRead = () => {
     })
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
+        document.querySelectorAll('.unread-notification').forEach((notif_dom) =>  notif_dom.classList.add('read-notification'))
       });
+    }
+    , 2500 )
     });
 }
-export {markAsRead}
+export {markAsRead};
+

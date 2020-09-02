@@ -1,6 +1,6 @@
-<% @timing = (Time.now - notification.created_at)/60 %>
-<%if @timing < 60 %>
-  <%="#{@timing.round} min ago"%>
+<% timing = (Time.now - notification.created_at)/60 %>
+<%if timing < 60 %>
+  <%="#{timing.round} min ago"%>
 <% else %>
-  <%= "#{(@timing/60).round} hour(s) ago" %>
+  <%= "#{(timing/60).round} hour(s) ago" %>
 <%end %>

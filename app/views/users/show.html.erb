@@ -1,10 +1,112 @@
-<div class="container">
+
+<div class="container w-100">
+  <div class="row">
+    <div class="col-12">
+      <div class="media mt-4 border border-dark">
+        <% if @user.photo.attached? %>
+        <img class="mr-3" src="<%= cl_image_path @user.photo.key, height: 300, width: 400, crop: :fill %>" alt="Generic placeholder image">
+        <% else %>
+        <img class="mr-3" style= "height: 300px;" src="<%= image_path "logo.png" %>" alt="Generic placeholder image">
+        <% end %>
+        <div class="media-body">
+          <h5 class="mt-0">PROFILE</h5>
+            <p> First name: <%=@user.first_name%> </p>
+            <p> Last name: <%=@user.last_name%> </p>
+            <p> Level: <%=@level.name%> </p>
+            <p> Availability: On average <%=@user.availability%> days a week </p>
+            <% if @user.linkedin_profile %>
+            <p> LinkedIn: <%=@user.linkedin_profile%> </p>
+            <% end %>
+            <p> Reviews: </p>
+            <p> Member since: <%=@user.created_at.strftime("%d of %B, %Y")%> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div id="carouselExampleControls" class="carousel slide mt-4" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <p class="text-center"> Projects finished by <%=@user.first_name%> </p>
+            <div class="card bg-secondary text-white" style="width: 100%;">
+              <div class="card-body">
+                <h5 class="card-title"><%=@user.first_name%> has currently worked on <%= pluralize( @user.solicitations.where(status: "Accepted").count, 'project' ) %> </h5>
+                  <p class="card-text"><%=  %></p>
+                  <p class="card-text"><%=  %></p>
+                <a href="mailto:<%=@user.email%>">Get in touch</a>
+              </div>
+            </div>
+          </div>
+          <% @solicitations.each do |solicitation| %>
+            <% if solicitation.status == "Accepted" && solicitation.project.status == "confirmed"%>
+                <div class="carousel-item">
+                  <div class="card bg-secondary text-white" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= solicitation.project.name %></h5>
+                        <p class="card-text"><%= solicitation.project.description %></p>
+                        <p class="card-text"><%= solicitation.project.level.name %></p>
+                        <% solicitation.project.pages.each do |page| %>
+                        <p class="card-text"><%= page.name %></p>
+                        <% end %>
+                        <% solicitation.project.features.each do |feature| %>
+                        <p class="card-text"><%= feature.name %></p>
+                        <% end %>
+                      <% updates = solicitation.intermediary_updates%>
+                      <% updates.each do |update| %>
+                      <a href= "<%=update.url%>" class="btn btn-primary">Project website</a>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+              <% @number = 0 %>
+              <% @solicitations.each do |solicitation| %>
+                <% if solicitation.status == "Accepted" && solicitation.project.status == "confirmed"%>
+                  <% @number += 1 %>
+                  <li data-target="#carouselExampleControls" data-slide-to="<%= @number %>"></li>
+                <% end %>
+              <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 mt-4">
+      <div class="border border-dark px-2 pt-1 ">
+        <% if @github_user['name']  %>
+          <p>Name: <%= @github_user['name']%> </p>
+        <% end %>
+        <p>Github-username: <%= @github_user['login']%></p>
+        <% if @github_user['location']  %>
+          <p>Location: <%= @github_user['location']%> </p>
+        <% end %>
+        <% if @github_user['bio']  %>
+          <p>About: <%= @github_user['bio']%> </p>
+        <% end %>
+        <p>Public repos: <%= @github_user['public_repos']%></p>
+        <p><%= @github_user['html_url']%></p>
+        <% if @github_user['hireable']  %>
+          <p>Hireable: <%= @github_user['hireable']%> </p>
+        <% else %>
+        <p>Hireable: No </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- i'm going to integrate this now in the profile, greetings Lennert -->
+<!-- <div class="container">
   <h1 class="my-3">My profile page</h1>
 
   <h2 class="my-3">My reviews</h2>
-  <% @user.reviews.each do |review| %>
-    <%= review.score %>
-    <%= review.comment %>
-  <% end %>
-</div>
+  <#% @user.reviews.each do |review| %>
+    <#%= review.score %>
+    <#%= review.comment %>
+  <#% end %>
+</div> -->
+
 

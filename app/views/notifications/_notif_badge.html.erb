@@ -1,6 +1,1 @@
-<% sum = 0 %>
-<% current_user.notifications.each do |notification| %>
-  <% if notification.read.false?%>
-    <% sum += 1 %>
-  <% end %>
-<% end %>
+<%= current_user.notifications.where(read: false).length %>
