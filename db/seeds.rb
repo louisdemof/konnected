@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #delete previous seed
+Order.destroy_all
 Project.destroy_all
 Feature.destroy_all
 User.destroy_all
