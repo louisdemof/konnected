@@ -12,9 +12,10 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
       @solicitation = Solicitation.find(params[:solicitation_id])
     @review.solicitation = @solicitation
-    if @review.save!
+    if @review.save
       redirect_to reviews_path, notice: "Congrats, you submitted a review!"
     else
+      flash[:alert] = "Something went wrong."
       render :new
     end
   end
