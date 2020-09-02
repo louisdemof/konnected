@@ -11,6 +11,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "jquery-bar-rating/dist/themes/css-stars";
 
 body {
   background-color: white;
@@ -71,3 +72,4 @@ p {
   font-size: 40px;
   color: $blue;
 }
+
