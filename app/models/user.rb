@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :projects
   has_many :intermediary_updates, through: :solicitations
-  has_many :reviews ,through: :solicitations
+  has_many :reviews,through: :solicitations
   has_one_attached :photo
   has_many :notifications, foreign_key: :recipient_id
 
