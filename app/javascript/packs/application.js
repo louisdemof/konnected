@@ -40,6 +40,9 @@ document.addEventListener('turbolinks:load', () => {
   initNotificationCable();
   markAsRead();
 });
+import { initStarRating } from '../plugins/init_star_rating';
+
+initStarRating();
 
 //function myFunction() {
   // Get the checkbox
