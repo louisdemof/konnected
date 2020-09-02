@@ -18,7 +18,7 @@
                 </div>
               <% end %>
             <% @features.each do |feature| %>
-              <div id="<%=feature.id%>" class="d-none">
+              <div id="<%=feature.id%>" class="d-none" data-name="<%= feature.name %>">
                 <%= feature.amount_cents %>
               </div>
             <%end%>
@@ -27,24 +27,29 @@
     </div>
     <div class="col-4 mt-4">
       <div>
-        <ul class="list-group">
+        <ul class="list-group" id="cart2">
           <li class="list-group-item list-group-item-primary w-100">
             SHOPPING CART
           </li>
           <li class="list-group-item list-group-item-dark">
             Pricing pages
           </li>
-            <% @project_pages = @project.pages %>
-            <% @project_pages.each do |page| %>
               <li class="list-group-item list-group-item-light">
+                <% @project_pages = @project.pages %>
+                <% @project_pages.each do |page| %>
                  <%= page.name %> : <%= page.amount_cents/100 %> euro
+                 <% end %>
               </li>
-            <%end%>
+            <li class="list-group-item list-group-item-dark">
+            Pricing features
+            <li class="list-group-item list-group-item-light" id="feature-list">
+          </li>
+          </li>
         </div>
           <li class="list-group-item list-group-item-success w-100">
               <h3> Total cost: <span id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100 %></span> euro</h3>
             </li>
-            </ul>
+          </ul>
       </div>
     </div>
 </div>
