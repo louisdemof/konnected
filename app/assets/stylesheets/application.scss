@@ -66,8 +66,18 @@ p {
   width: 100%;
 }
 
-// Cards on home page 
+// Cards on home page
 .feature-home {
   font-size: 40px;
   color: $blue;
+}
+
+.behind-image{
+  position: absolute;
+  z-index: 1;
+}
+
+.front-image{
+  z-index: 2;
+  position: absolute;
 }

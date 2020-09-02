@@ -7,7 +7,6 @@ const markAsRead = () => {
       const notifCounter = document.querySelector('.badge')
         notifCounter.classList.remove("badge-danger")
         notifCounter.classList.add("badge-light")
-
       // Add one to the number
       notifCounter.innerText = 0
      setTimeout( () => { 

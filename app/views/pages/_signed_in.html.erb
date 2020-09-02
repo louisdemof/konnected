@@ -1,0 +1,77 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url('<%= image_path "Banner6.png" %>');">
+      <div class="container d-flex align-items-center flex-column">
+        <h1>Hi <%= current_user.first_name %>!</h1>
+        <% random_welcome = ["Today is the perfect day to launch your new project", "We hope you are having a wonderful day",
+        "Why don't you start a new project?", "Believe you can and you're halfway there", "Today is the first day of the rest of your life"].sample %>
+        <p><%= random_welcome %></p>
+        <div class="d-flex">
+          <%= link_to "Start a new project", new_project_path, class:"btn btn-secondary mx-3"%>
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-5">
+      <h2 class="text-center mb-3">Your projects</h2>
+      <div class="row">
+        <% unless current_user.projects.empty?%>
+          <% current_user.projects.each do |project| %>
+            <div class="card my-2 col-3 offset-1">
+              <div class="card-header">
+                <h4><%= project.name %></h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text"><%= project.description%></p>
+                <% if project.status == "published"%>
+                  <p class="card-text btn-border-success">Project open for applications</p>
+                  <% if project.solicitations.empty?%>
+                   <button class="btn btn-secondary text-center" disabled>No applications yet</button>
+                  <% else%>
+                    <%= link_to "See applications", project_solicitations_path(project), class:"btn btn-primary"%>
+                  <%end %>
+                  <%= link_to "Project details", project_path(project), class:"btn btn-outline-primary my-2" %>
+                <% elsif project.status == "assigned" %>
+                  <% @solicitation = project.solicitations.find_by(status: "Accepted")%>
+                  <p class="card-text btn-border-success">Project assigned to ...</p>
+                   <%= link_to "Go to your dashboard", solicitation_path(@solicitation), class:"btn btn-primary text-center"%>
+                  <%= link_to "Project details", project_path(project), class:"btn btn-outline-primary my-2" %>
+                <% elsif project.status == "confirmed"%>
+                  <p class="card-text btn-border-success">Project finished</p>
+                  <button class="btn btn-secondary text-center my-2" disabled>This project is finished</button>
+                  <%= link_to "See details", "#", class:"btn btn-outline-primary"%>
+                <% elsif project.status == "inspection"%>
+                  <p class="card-text btn-border-success text-red">Project being inspected</p>
+                  <button class="btn btn-secondary text-center my-2" disabled>This project is being inspected</button>
+                  <%= link_to "See details", "#", class:"btn btn-outline-primary"%>
+                <% elsif project.status == "general-info" %>
+                  <p class="card-text btn-border-success">Only 3 steps to finish your project</p>
+                  <%= link_to "Finish project", project_path(project), class:"btn btn-danger my-2"%>
+                  <%= link_to "Delete draft",
+                  project_path(project),
+                  method: :delete,
+                  data: { confirm: "Are you sure you want to delete this draft?" },
+                  class:"btn btn-outline-danger" %>
+                <% elsif project.status == "page_stage" %>
+                  <p class="card-text btn-border-success">Only 2 steps to finish your project</p>
+                  <%= link_to "Finish project", project_path(project), class:"btn btn-danger my-2"%>
+                  <%= link_to "Delete draft",
+                  project_path(project),
+                  method: :delete,
+                  data: { confirm: "Are you sure you want to delete this draft?" },
+                  class:"btn btn-outline-danger" %>
+                <% elsif project.status == "feature_stage" %>
+                  <p class="card-text btn-border-success">Only 1 step left to finish your project</p>
+                  <%= link_to "Finish project", project_path(project), class:"btn btn-danger my-2"%>
+                  <%= link_to "Delete draft",
+                  project_path(project),
+                  method: :delete,
+                  data: { confirm: "Are you sure you want to delete this draft?" },
+                  class:"btn btn-outline-danger" %>
+                <% else %>
+                  <p class="card-text btn-border-success">Problem here</p>
+                <% end %>
+              </div>
+            </div>
+          <%end%>
+        <%end%>
+      </div>
+    </div>
