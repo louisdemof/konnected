@@ -12,10 +12,13 @@
 @import "components/index";
 @import "pages/index";
 
-h1{
-  color: $blue;
+body {
+  background-color: white;
 }
 
+h1{
+  color: $grey;
+}
 
 p {
   font-size: 14px;
@@ -45,8 +48,6 @@ p {
   margin-bottom: 7px;
 }
 
-
-
 .underlined{
   border-bottom: 3px solid #3377ff;
   display: inline;
@@ -63,4 +64,10 @@ p {
 .comment_content {
   margin-bottom: 0px !important;
   width: 100%;
+}
+
+// Cards on home page 
+.feature-home {
+  font-size: 40px;
+  color: $blue;
 }
