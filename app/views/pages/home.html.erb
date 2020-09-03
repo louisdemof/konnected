@@ -13,11 +13,51 @@
       </div>
     </div>
 
+    <section class="content-area">
+      <div class="container mt-5">
+        <h1>Dashboard</h1>
+        <p>Here's a summary of your projects</p>
+      </div>
+
+
+        <div class="row">
+          <% current_user.solicitations.where(status: "Accepted").each do |solicitation| %>
+            <div class="card my-2 col-3 offset-1">
+              <div class="card-header">
+                <h4>Current project</h4>
+              </div>
+
+              <div class="card-body">
+                <p class="card-text">basic landing page</p>
+                  <p class="card-text btn-border-success">Continue your work</p>
+                  <%= link_to "Continue to project", project_path(solicitation.project), class: "btn btn-danger my-2"%>
+              </div>
+            </div>
+          <%end%>
+            <% current_user.solicitations.where(status: "Pending").each do |solicitation| %>
+            <div class="card my-2 col-3 offset-1">
+              <div class="card-header">
+                <h4>Current applications</h4>
+              </div>
+
+              <div class="card-body">
+                <p class="card-text">home page</p>
+                  <p class="card-text btn-border-success"><%=solicitation.status%></p>
+                  <%= link_to "Continue to project", project_path(solicitation.project), class: "btn btn-danger my-2"%>
+              </div>
+            </div>
+          <%end%>
+          </div>
+        </div>
+
+
     <div class="container mt-5">
-      <h2>All projects on the platform</h2>
+      <h2>Projects that may be of interested to you</h2>
       <ul>
-        <% @projects.each do |project| %>
-          <li><%= link_to project.name, project_path(project) %></li>
+          <% @projects.each do |project| %>
+          <% if project.level == current_user.level&&project.status == "published"%>
+            <li><%= link_to project.name, project_path(project) %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
@@ -69,7 +109,7 @@
                 <% elsif project.status == "general-info" %>
                   <p class="card-text btn-border-success">Only 3 steps to finish your project</p>
                   <%= link_to "Finish project", project_path(project), class:"btn btn-danger my-2"%>
-                  <%= link_to "Delete draft", 
+                  <%= link_to "Delete draft",
                   project_path(project),
                   method: :delete,
                   data: { confirm: "Are you sure you want to delete this draft?" },
@@ -77,7 +117,7 @@
                 <% elsif project.status == "page_stage" %>
                   <p class="card-text btn-border-success">Only 2 steps to finish your project</p>
                   <%= link_to "Finish project", project_path(project), class:"btn btn-danger my-2"%>
-                  <%= link_to "Delete draft", 
+                  <%= link_to "Delete draft",
                   project_path(project),
                   method: :delete,
                   data: { confirm: "Are you sure you want to delete this draft?" },
@@ -85,7 +125,7 @@
                 <% elsif project.status == "feature_stage" %>
                   <p class="card-text btn-border-success">Only 1 step left to finish your project</p>
                   <%= link_to "Finish project", project_path(project), class:"btn btn-danger my-2"%>
-                  <%= link_to "Delete draft", 
+                  <%= link_to "Delete draft",
                   project_path(project),
                   method: :delete,
                   data: { confirm: "Are you sure you want to delete this draft?" },
@@ -97,10 +137,10 @@
             </div>
           <%end%>
         <%end%>
-      </div>  
+      </div>
     </div>
     <%end%>
-      
+
 
 <% else %>
   <%= render 'pages/not_signed_in'%>

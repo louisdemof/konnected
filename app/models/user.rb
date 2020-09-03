@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :solicitations
+  has_many :applied_projects, through: :solicitations, source: :project
   has_many :orders
   has_many :projects
   has_many :intermediary_updates, through: :solicitations
