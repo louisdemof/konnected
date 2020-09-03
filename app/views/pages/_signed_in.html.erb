@@ -49,9 +49,9 @@
 
                   <p><%= project.description %></p>
                   <% if project.solicitations.length > 0 %>
-                    <p>No applications yet</p>
-                  <% else %>
                     <%= link_to "Check Applications", project_solicitations_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+                  <% else %>
+                    <p>No applications yet</p>
                   <% end %>
               </div>
             </div>
