@@ -201,7 +201,7 @@
             <p class="text-center">Email: <%= mail_to @project.user.email, @project.user.email %></p>
 
           <!--Add if statement here for if the company project is confirmed and add a link to the dasboard-->
-            <% if @project.status == "assigned" && current_user.id == @project.user_id%>
+            <% if @project.status == "assigned" && current_user.id == @project.user_id && @solicitation %>
               <%= link_to "Go to your dashboard", solicitation_path(@solicitation), class:"btn btn-primary text-center"%>
             <%elsif @project.status == "confirmed" && current_user.id == @project.user_id%>
               <button class="btn btn-secondary text-center" disabled>This project is done</button>

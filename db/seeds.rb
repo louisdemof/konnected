@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #delete previous seed
 Order.destroy_all
+Notification.destroy_all
 Project.destroy_all
 Feature.destroy_all
 Comment.destroy_all
@@ -72,6 +73,8 @@ User.create!(
     student: true,
     level: Level.all.sample,
     github_username: "louisdemof",
+    linkedin_profile: "https://www.linkedin.com/louisdemof/",
+    website_1: "https://equipr.herokuapp.com/"
   )
 #Seed for adding company name to companies
 
