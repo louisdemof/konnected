@@ -48,13 +48,13 @@
           <li class="list-group-item list-group-item-light">
             <% @project_pages = @project.pages %>
               <% @project_pages.each do |page| %>
-              <p> <%= page.name %> : <%= page.amount_cents/100 %> euro </p>
+              <div> <%= page.name %> - <%= page.amount_cents/100 %> euro </div>
             <% end %>
           </li>
           <li class="list-group-item list-group-item-dark"> Pricing features </li>
           <li class="list-group-item list-group-item-light" id="feature-list"></li>
           <li class="list-group-item list-group-item-success w-100">
-            <h3> Total cost: <h2 id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100 %></h2> EURO</h3>
+            <h3>Total cost: </h3><div class="d-flex"><h2 id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100%> </h2> EURO </div>
           </li>
         </ul>
       </div>
