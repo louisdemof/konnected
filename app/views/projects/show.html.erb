@@ -3,11 +3,11 @@
 <% @status = @project.status %>
 <% case @status %>
 <% when "general_info"%>
-  <%= render "page_stage" %>
+  <%= render "projects/page_stage" %>
 <% when "page_stage"%>
-  <%= render "feature_stage" %>
+  <%= render "projects/feature_stage" %>
 <% when "feature_stage"%>
-  <%= render "confirmation_stage" %>
+  <%= render "projects/confirmation_stage" %>
 <% else %>
   <% if current_user.student %>
     <!-- Actual project show page -->

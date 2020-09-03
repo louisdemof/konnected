@@ -45,6 +45,7 @@ document.addEventListener('turbolinks:load', () => {
   markAsRead();
   loadDynamicBannerText();
 });
+
 import { initStarRating } from '../plugins/init_star_rating';
 
 initStarRating();
