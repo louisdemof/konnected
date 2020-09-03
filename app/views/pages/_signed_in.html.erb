@@ -35,7 +35,7 @@
       </div>
       <% if current_user.projects.where(status:"published").blank? %>
       <%else %>
-      <h2 class="text-center my-5">Project with pending applications</h2>
+      <h2 class="text-center my-5">Projects open for applications</h2>
           <div class="row my-4">
           <% current_user.projects.where(status:"published").each do |project| %>
           <div class="card-homepage shadow p-4 mb-5 col-6 justify-content-between absolute">
@@ -48,7 +48,11 @@
                   <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
 
                   <p><%= project.description %></p>
-                  <%= link_to "Check Applications", project_solicitations_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+                  <% if project.solicitations.length > 0 %>
+                    <%= link_to "Check Applications", project_solicitations_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+                  <% else %>
+                    <p>No applications yet</p>
+                  <% end %>
               </div>
             </div>
           </div>
