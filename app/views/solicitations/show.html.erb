@@ -5,16 +5,19 @@
         <%= link_to "Add update", new_project_solicitation_intermediary_update_path(@project, @solicitation, @intermediary_update), class:"btn btn-outline-primary" %>
       <% end %>
     </div>
-  
+
   <div class="container d-flex flex-column align-items-center">
     <% @new_solicitation_first = @solicitation.intermediary_updates.reverse %>
+    <% counter = 0 %>
     <% @new_solicitation_first.each do |update| %>
       <div class="card w-75 my-3">
         <div class="card-header bg-white text-right">
           <%= "#{update.created_at.day}/#{update.created_at.month}/#{update.created_at.year} at #{update.created_at.hour}:#{update.created_at.min} "%>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Update <%= update.id + 1 %></h5>
+          <!-- formula to count the number of intermediary update -->
+          <% counter += 1 %>
+          <h5 class="card-title">Update <%= counter %></h5>
           <p class="card-text">
             <%= update.description %>
           </p>
@@ -23,7 +26,15 @@
           <% end %>
           <% if update.documents %>
             <p class="card-text">show documents</p>
-          <%end%>
+              <% update.documents.each do |document| %>
+                <div class="d-flex flex-row mx-2">
+                  <%= link_to rails_blob_path(document, disposition: "document"), target: "_blank" do %>
+                    <i class="fas fa-file-download fa-2x"></i>
+                  <% end %>
+                  <p class="time_update" class="text-center"><%= document.filename %></p>
+                  </div>
+                <% end %>
+          <% end %>
           <% if update.accomplished && current_user.student == false %>
             <%= simple_form_for(@project, url: confirm_project_path(@project), html: {method: :patch}) do |f| %>
               <%= f.button :submit , value: "Confirmed", class: "btn btn-primary my-2"%>
@@ -33,7 +44,7 @@
           <% end %>
         </div>
         <div>
-      
+
           <div class="bg-light" id="comments" data-intermediary-update-id="<%= update.id %>">
           <hr>
             <h5 class="container">Comments</h5>
@@ -47,7 +58,7 @@
                   <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i></button>
               </div>
             <% end %>
-        
+
         </div>
       </div>
     <% end %>
