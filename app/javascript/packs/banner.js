@@ -11,6 +11,7 @@ const loadDynamicBannerText = () => {
     typeSpeed: 50,
     loop: true
   });
+
 }
 
 export { loadDynamicBannerText };

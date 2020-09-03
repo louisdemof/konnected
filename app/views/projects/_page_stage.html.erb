@@ -24,11 +24,22 @@
       <%= f.association :pages, as: :check_boxes %>
       <%= f.submit %>
     <% end %>
-    <h3> Total cost <span id="total" data-total="<%= @project.total_price %>">0</span> euro</h3>
     <% @pages.each do |page| %>
-      <div id="<%=page.id%>" class="d-none">
+      <div id="<%=page.id%>" class="d-none" data-name="<%= page.name %>">
         <%= page.amount_cents %>
       </div>
     <% end %>
   </div>
 </div>
+<div class="col-4 mt-4">
+      <div>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-primary w-100"> SHOPPING CART </li>
+          <li class="list-group-item list-group-item-dark"> Pricing features </li>
+          <li class="list-group-item list-group-item-light" id="cart2"></li>
+          <li class="list-group-item list-group-item-success w-100">
+            <h3> Total cost: <span id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100 %></span> euro</h3>
+          </li>
+        </ul>
+      </div>
+    </div>
