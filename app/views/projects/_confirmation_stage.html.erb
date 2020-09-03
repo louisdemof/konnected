@@ -66,7 +66,7 @@
           <ul class="list-group">
             <li class="list-group-item list-group-item-dark"> <h3> TOTAL PRICE: <%= @project.total_price / 100 %> euro</h3></li>
             <li class="list-group-item list-group-item-light">
-              <button id="pay" class="btn btn-primary">Pay</button>
+              <button id="pay" class="btn btn-primary">Pay now</button>
                 <script src="https://js.stripe.com/v3/"></script>
                 <script>
                   const paymentButton = document.getElementById('pay');
@@ -77,7 +77,7 @@
                     });
                   });
                 </script>
-              <%= link_to "Pay Later", project_path(@project, params: { project: { status: "published"}}), method: :put, class: "btn btn-warning" %>
+              <%= link_to "Pay Later", project_path(@project, params: { project: { status: "published"}}), method: :put, class:"btn btn-outline-primary" %>
             </li>
           </ul>
         </div>
@@ -133,7 +133,7 @@
         <ul class="list-group">
           <li class="list-group-item list-group-item-dark bg-light"> <h3 class="text-muted"> TOTAL PRICE: <%= @project.total_price / 100 %> euro</h3></li>
           <li class="list-group-item list-group-item-light">
-            <button id="pay" class="btn btn-light text-muted bg-light">Pay</button>
+            <button id="pay" class="btn btn-light text-muted bg-light">Pay now</button>
             <button id="pay" class="btn btn-light text-muted bg-light">Pay later</button>
           </li>
         </ul>
