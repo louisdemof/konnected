@@ -23,6 +23,15 @@ class ProjectsController < ApplicationController
     redirect_to project_path(@project), notice: "The first step of your project has been created"
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    @project.update(params[:project])
+  end
+
   def confirm_project
     @project = Project.find(params[:id])
     @solicitation = @project.solicitations.find_by(status: "Accepted")

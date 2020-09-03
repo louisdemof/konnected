@@ -8,8 +8,10 @@ class ProjectFeaturesController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
     @project_feature = ProjectFeature.find(params[:id])
     @project_feature.destroy
+    render "projects/show"
   end
 
   private

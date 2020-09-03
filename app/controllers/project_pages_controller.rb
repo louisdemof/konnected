@@ -9,8 +9,10 @@ class ProjectPagesController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
     @project_page = ProjectPage.find(params[:id])
     @project_page.destroy
+    render "projects/show"
   end
 
   private

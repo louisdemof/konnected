@@ -11,6 +11,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "jquery-bar-rating/dist/themes/css-stars";
 
 body {
   background-color: white;
@@ -57,17 +58,51 @@ p {
   height: 150px;
 }
 
-#time_update{
+.time_update{
   font-size: 14px;
   color: grey;
+  margin-top: 10px;
 }
 .comment_content {
   margin-bottom: 0px !important;
   width: 100%;
 }
 
-// Cards on home page 
+// Cards on home page
 .feature-home {
-  font-size: 40px;
+  font-size: 35px;
   color: $blue;
 }
+
+.feature-col {
+  text-align: right;
+}
+
+.card-homepage p {
+  line-height: 200%;
+}
+
+.card-homepage h2{
+  margin-bottom: 3%;
+}
+
+.card-homepage {
+  border-left: solid $blue 2px;
+}
+
+// table on confirmation page
+.first-col {
+  width: 170px;
+  border-bottom: 1px solid $blue;
+}
+
+.second-col {
+  width: 100px;
+  border-bottom: 1px solid $blue;
+}
+
+.third-col {
+  width: 50px;
+  border-bottom: 1px solid $blue;
+}
+

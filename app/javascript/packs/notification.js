@@ -2,12 +2,12 @@ import { csrfToken } from "@rails/ujs";
 
 const markAsRead = () => {
   const bell = document.querySelector('#bell');
+    if(bell){
     bell.addEventListener('click', (event) => {
   // Callback
       const notifCounter = document.querySelector('.badge')
         notifCounter.classList.remove("badge-danger")
         notifCounter.classList.add("badge-light")
-
       // Add one to the number
       notifCounter.innerText = 0
      setTimeout( () => { 
@@ -26,6 +26,7 @@ const markAsRead = () => {
     }
     , 2500 )
     });
+    }
 }
 export {markAsRead};
 
