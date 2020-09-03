@@ -76,7 +76,7 @@
                 <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
                 <p><%= project.description %></p>
                 <% if project.solicitations.length > 0%>
-                  <%= link_to "Check Applications", project_solicitations_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+                  <%= link_to "Check Applications (#{project.solicitations.length})", project_solicitations_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
                 <% else %>
                   <%= link_to "No applications yet", "#", class:"absolute-bottom btn btn-outline-primary my-2 disabled" %>
                 <% end %>
