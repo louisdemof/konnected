@@ -48,7 +48,8 @@
                 <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
 
                 <p><%= project.description %></p>
-                <%= link_to "Project updates", solicitation_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+                <% solicitation = project.solicitations.find_by(status:"Accepted") %>
+                <%= link_to "Project updates", solicitation_path(solicitation), class:" absolute-bottom btn btn-outline-primary my-2" %>
             </div>
           </div>
         </div>
