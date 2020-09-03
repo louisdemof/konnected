@@ -1,9 +1,7 @@
 
 const insertPages = () => {
-  let form_element = document.querySelector(".edit_project")
-  if (form_element) {
-    let features_fieldset = form_element.querySelector('.project_features')
-    let pages_fieldset = form_element.querySelector('.project_pages')
+    let features_fieldset = document.querySelector('.project_features')
+    let pages_fieldset = document.querySelector('.project_pages')
     let checkboxs = document.querySelectorAll("fieldset .form-check-input")
     let init_total = parseInt(document.getElementById('total').dataset.total, 10)
 
@@ -13,6 +11,8 @@ const insertPages = () => {
       console.log(event);
       /* var result = init_total */
         var checkout = document.getElementById('cart2')
+      console.log(checkout);
+
         checkout.innerHTML = ""
         checkboxs.forEach(checkbox => {
           if (checkbox.checked === true) {
@@ -38,7 +38,7 @@ const insertPages = () => {
         })
       });
     }
-  }
+
 };
 
 export { insertPages };

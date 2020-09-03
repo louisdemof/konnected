@@ -82,13 +82,14 @@
             <hr>
           <!--Add if statement here for if the company project is confirmed and add a link to the dasboard-->
             <% if @project.status == "assigned" && current_user.id == @project.user_id && @solicitation %>
-              <%= link_to "Go to your dashboard", solicitation_path(@solicitation), class:"btn btn-primary text-center"%>
+              <%= link_to "Latest updates", solicitation_path(@solicitation), class:"btn btn-primary text-center"%>
             <%elsif @project.status == "confirmed" && current_user.id == @project.user_id%>
               <button class="btn btn-secondary text-center" disabled>This project is done</button>
             <%elsif @project.status == "published" && current_user.id == @project.user_id && @project.solicitations.length > 0%>
-              <%= link_to "Check current solicitations", project_solicitations_path(@project), class:"btn btn-primary text-center"%>
+              <%= link_to "See open solicitations (#{@project.solicitations.length})", project_solicitations_path(@project), class:"btn btn-primary text-center"%>
 -           <% else %>
              <button class="btn btn-secondary text-center" disabled>This project doesn't have applications yet</button>
+             <%= link_to "Your dashboard", root_path, class:"btn btn-primary text-center"%>
             <% end %>
             </div>
             <div class="bg-white my-3 p-3 shadow">
