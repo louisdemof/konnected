@@ -7,8 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #delete previous seed
 Order.destroy_all
+Notification.destroy_all
 Project.destroy_all
 Feature.destroy_all
+Comment.destroy_all
 User.destroy_all
 Level.destroy_all
 Page.destroy_all
@@ -55,7 +57,8 @@ page_6 = Page.create(name: "FAQ page", description: "a web page listing frequent
     address: "#{Faker::Address.street_address} #{Faker::Address.city}" ,
     phone_number: Faker::PhoneNumber.cell_phone,
     student: [true, false].sample,
-    level: Level.all.sample
+    level: Level.all.sample,
+    github_username: Faker::Name.first_name,
   )
 end
 
@@ -68,8 +71,10 @@ User.create!(
     address: "Rue Félicien Delince 14, 1160, Auderghem" ,
     phone_number: "0498827393",
     student: true,
-    level: Level.all.
-    github_username: "louisdemof"
+    level: Level.all.sample,
+    github_username: "louisdemof",
+    linkedin_profile: "https://www.linkedin.com/louisdemof/",
+    website_1: "https://equipr.herokuapp.com/"
   )
 #Seed for adding company name to companies
 

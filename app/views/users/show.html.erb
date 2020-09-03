@@ -21,8 +21,11 @@
             <% @solicitations.each do |solicitation| %>
             <% @average += solicitation.review.score %>
             <% end %>
-            <% @average_rating = @average/@solicitations.count%>
-            <p> Average rating: <%= select_tag "score", options_for_select((0..4).to_a, @average_rating - 1), class: "review-score" %></p>
+            <% if @solicitation %>
+              <% @average_rating = @average/@solicitations.count%>
+              <p> Average rating: <%= select_tag "score", options_for_select((0..4).to_a, @average_rating - 1), class: "review-score" %></p>
+            <% else %>
+            <% end %>
             <p> Member since: <%=@user.created_at.strftime("%d of %B, %Y")%> </p>
         </div>
       </div>
