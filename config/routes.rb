@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
   resources :reviews, only: [:index, :show, :destroy]
   resources :users, only: [:show, :index]
-  resources :projects, except: [:destroy] do
+  resources :projects do
     resources :project_pages, only: [:new, :create, :destroy]
     resources :project_features, only: [:new, :create, :destroy]
     resources :solicitations, only: [:new, :create, :index] do
