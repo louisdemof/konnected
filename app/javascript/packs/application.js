@@ -34,21 +34,20 @@ import { initNotificationCable } from '../channels/notification_channel';
 import { markAsRead} from './notification';
 import { loadDynamicBannerText } from './banner';
 import { insertPages } from './insert_pages';
+import { initStarRating } from '../plugins/init_star_rating';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  insertPages();
   initPriceTotal();
   initIntermediaryUpdateCable();
   initNotificationCable();
   markAsRead();
   loadDynamicBannerText();
+  initStarRating();
 });
 
-import { initStarRating } from '../plugins/init_star_rating';
 
-initStarRating();
 
 //function myFunction() {
   // Get the checkbox

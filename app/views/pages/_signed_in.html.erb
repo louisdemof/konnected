@@ -148,7 +148,7 @@
           </div>
         </div>
         <%end %>
-        <% current_user.projects.where(status:"feature_stage, page_stage").each do |project| %>
+        <% current_user.projects.where(status:"feature_stage").each do |project| %>
         <div class="card-homepage shadow p-4 mb-5 col-6 justify-content-between absolute">
           <div class="row">
             <div class="col-12 col-md-2 feature-col mt-2">
