@@ -55,4 +55,5 @@ class Project < ApplicationRecord
         end
     return total
   end
+
 end
