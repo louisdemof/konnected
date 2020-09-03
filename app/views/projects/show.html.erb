@@ -17,7 +17,11 @@
         <div class="col-sm-12 col-lg-8 bg-white my-3 p-3">
         <h3 class="underlined"><%=@project.name %></h3>
         <h5 class="mt-3"><%=@project.level.definition %></h5>
-        <p id="time_update">Posted <%= ((Time.now - @project.created_at)/3600).round%><%= ' hour'.pluralize(1) %> ago</p>
+        <% if ((Time.now - @project.created_at)/3600).round < 24  %>
+          <p class="time_update">Posted <%= ((Time.now - @project.created_at)/3600).round%><%= ' hour (s)'.pluralize(1) %> ago</p>
+        <% else %>
+          <p class="time_update">Posted <%= ((Time.now - @project.created_at)/3600/24).round%><%= ' day(s)'.pluralize(1) %> ago</p>
+        <% end %>
         <h5>Project description:</h5>
         <p><%= @project.description %></p>
           <div class="row rounded my-2 py-3 card-shadow height">
@@ -80,7 +84,7 @@
                 <%= link_to rails_blob_path(attachment, disposition: "attachment"), target: "_blank" do %>
                 <i class="fas fa-file-download fa-2x"></i>
                 <% end %>
-              <p id="time_update" class="text-center"><%= attachment.filename %></p>
+              <p class="time_update" class="text-center"><%= attachment.filename %></p>
               </div>
             <% end %>
           </div>
@@ -102,7 +106,7 @@
           <button class="btn btn-secondary text-center" disabled>This project has allready been assigned</button>
         <%elsif @project.status == "confirmed" || @project.status =="inspection" %>
           <button class="btn btn-secondary text-center" disabled>This project is closed</button>
-        <%elsif @project.status == "published" && @project.level == current_user.level%>
+        <%elsif @project.status == "published" && @project.level == current_user.level && !current_user.applied_projects.include?(@project) %>
           <%= link_to "Apply for this project", new_project_solicitation_path(@project), class:"btn btn-primary text-center"%>
         <% else %>
           <button class="btn btn-secondary" disabled>You can't apply for this project yet</button>
@@ -128,7 +132,11 @@
         <div class="row">
           <div class="col-sm-12 col-lg-8 bg-white my-3 p-3">
           <h3 class="underlined"><%=@project.name %></h3>
-          <p id="time_update" class="mt-3">Posted <%= ((Time.now - @project.created_at)/3600).round%><%= ' hour'.pluralize(1) %> ago</p>
+          <% if ((Time.now - @project.created_at)/3600).round < 24  %>
+            <p class="time_update">Posted <%= ((Time.now - @project.created_at)/3600).round%><%= ' hour (s)'.pluralize(1) %> ago</p>
+          <% else %>
+            <p class="time_update">Posted <%= ((Time.now - @project.created_at)/3600/24).round%><%= ' day(s)'.pluralize(1) %> ago</p>
+          <% end %>
           <h5>Project description:</h5>
           <p><%= @project.description %></p>
           <h5>Project pages:</h5>
@@ -178,7 +186,7 @@
                 <%= link_to rails_blob_path(attachment, disposition: "attachment"), target: "_blank" do %>
                 <i class="fas fa-file-download fa-2x"></i>
                 <% end %>
-                <p id="time_update" class="text-center"=><%= attachment.filename %></p>
+                <p class="time_update" class="text-center"=><%= attachment.filename %></p>
                 </div>
             <% end %>
             </div>
@@ -206,9 +214,11 @@
             <div class="bg-white my-3 p-3">
             <h4 class="text-center">About the student</h4>
             <hr>
-            <p class="text-center">Name: </p>
-            <p class="text-center">Phone: </p>
-            <p class="text-center">Email: </p>
+            <% @project.solicitations.where(status:"Accepted").each do |student| %>
+            <% end %>
+            <p class="text-center">student.name </p>
+            <p class="text-center">student.phone_number </p>
+            <p class="text-center">student.email </p>
             <p class="text-center">Location:</p>
             <p class="text-center"> <%=link_to "See Linkedin profile", "#{@project.user.linkedin_profile}" %></p>
             <h5 class="text-center">Personal website:</h5>
@@ -217,6 +227,7 @@
             <p class="text-center">Member since: <%=@project.user.created_at.strftime("%d of %B, %Y")%> </p>
             <p class="text-center bold">Average rating: <span class="primary-color bold">★★★★</span></p>
             <p class="text-center success-color success_box bold width 100%"> VERIFIED </p>
+
             </div>
           </div>
         </div>

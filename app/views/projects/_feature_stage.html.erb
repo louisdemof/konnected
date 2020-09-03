@@ -1,11 +1,22 @@
-<div class="progress" style='height: 30px'>
-  <div class="progress-bar bg-success" role="progressbar" style="width: 33%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">Add pages to your project</div>
-  <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Add features to your project</div>
-  <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Confirm your project</div>
-</div>
-
-<div class="container mt-4">
-  <div class="row row-cols-2 justify-content-md-center">
+<div class="container my-5">
+ <div class="card">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="/projects/<%=@project.id%>/edit">General information</a>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Add pages", project_path(@project, params: { project: { status: "general_info" } }), method: :put, remote: true, class: "nav-link " %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Add features", project_path(@project, params: { project: { status: "page_stage" } }), method: :put, remote: true, class: "nav-link active" %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Confirm</a>
+      </li>
+    </ul>
+  </div>
+  <div class="row row-cols-2 justify-content-md-center m-3">
     <div clas="col-8 mt-4">
       <div class="card border-success mt-4">
         <div class="card-header bg-transparent border-success">

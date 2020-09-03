@@ -58,9 +58,10 @@ p {
   height: 150px;
 }
 
-#time_update{
+.time_update{
   font-size: 14px;
   color: grey;
+  margin-top: 10px;
 }
 .comment_content {
   margin-bottom: 0px !important;
@@ -87,5 +88,21 @@ p {
 
 .card-homepage {
   border-left: solid $blue 2px;
+}
+
+// table on confirmation page
+.first-col {
+  width: 170px;
+  border-bottom: 1px solid $blue;
+}
+
+.second-col {
+  width: 100px;
+  border-bottom: 1px solid $blue;
+}
+
+.third-col {
+  width: 50px;
+  border-bottom: 1px solid $blue;
 }
 
