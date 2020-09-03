@@ -1,19 +1,127 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url('<%= image_path "Banner6.png" %>');">
-      <div class="container d-flex align-items-center flex-column">
-        <h1>Hi <%= current_user.first_name %>!</h1>
-        <% random_welcome = ["Today is the perfect day to launch your new project", "We hope you are having a wonderful day",
-        "Why don't you start a new project?", "Believe you can and you're halfway there", "Today is the first day of the rest of your life"].sample %>
-        <p><%= random_welcome %></p>
-        <div class="d-flex">
-          <%= link_to "Start a new project", new_project_path, class:"btn btn-secondary mx-3"%>
+  <div class="container d-flex align-items-center flex-column">
+    <h1>Hi <%= current_user.first_name %>!</h1>
+    <p class="dropdown_sentence">
+      <span id="banner-typed-text"></span>
+    </p>
+    <div class="d-flex">
+      <%= link_to "Start a new project", new_project_path, class:"btn btn-secondary mx-3"%>
+    </div>
+  </div>
+</div>
+<div class="position-relative">
+  <div class="shape shape-bottom shape-fluid-x svg-shim text-dark">
+    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"></path></svg>
+  </div>
+</div>
+    <div class="container my-5">
+      <h2 class="text-center mb-3">My Dashboard</h2>
+      <div class="row my-4">
+        <div class="col-xs-6 col-md-4 box-border">
+          <a href="#" class="btn-box big card-text"><i class="fas fa-edit"></i>
+            <b><%= current_user.projects.count %></b>
+              <p class="text-muted">Number of Projects</p>
+        </div>
+        <div class="col-xs-6 col-md-4 box-border">
+          <a href="#" class="btn-box big"><i class="fas fa-user-check"></i>
+            <b><%= current_user.solicitations.count %></b>
+              <p class="text-muted">Number of Applications</p></a>
+        </div>
+        <div class="col-xs-6 col-md-4 box-border">
+          <a href="#" class="btn-box big"><i class="fas fa-check-square"></i>
+            <b><%= current_user.projects.where(status: "completed").count %></b>
+              <p class="text-muted">Finished Projects</p></a>
         </div>
       </div>
-    </div>
+      <% if current_user.projects.where(status:"assigned").blank? %>
+      <%else %>
+      <h2 class="text-center my-5">Open Projects</h2>
+        <div class="row my-4">
+        <% current_user.projects.where(status:"assigned").each do |project| %>
+        <div class="card-homepage shadow p-4 mb-5 col-6 justify-content-between absolute">
+          <div class="row">
+            <div class="col-12 col-md-2 feature-col mt-2">
+              <i class="fas fa-laptop-code feature-home"></i>
+              <p class="card-pro"><%= project.user.level.name %></p>
+            </div>
+            <div class="col-12 col-md-10">
+              <h4><%= link_to "#{project.name}", project_path(project) %></h4>
+                <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
 
-    <div class="container my-5">
-      <h2 class="text-center mb-3">Your projects</h2>
-      <div class="row">
-        <% unless current_user.projects.empty?%>
+                <p><%= project.description %></p>
+                <%= link_to "Project updates", solicitation_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+            </div>
+          </div>
+        </div>
+        <%end %>
+    </div>
+    <% end %>
+    <% if current_user.projects.where(status:"published").blank? %>
+    <%else %>
+    <h2 class="text-center my-5">Project with applications pending</h2>
+        <div class="row my-4">
+        <% current_user.projects.where(status:"published").each do |project| %>
+        <div class="card-homepage shadow p-4 mb-5 col-6 justify-content-between absolute">
+          <div class="row">
+            <div class="col-12 col-md-2 feature-col mt-2">
+              <i class="fas fa-laptop-code feature-home"></i>
+              <p class="card-pro"><%= project.user.level.name %></p>
+            </div>
+            <div class="col-12 col-md-10">
+              <h4><%= link_to "#{project.name}", project_path(project) %></h4>
+                <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
+
+                <p><%= project.description %></p>
+                <%= link_to "Check Applications", project_solicitations_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+            </div>
+          </div>
+        </div>
+        <%end %>
+      </div>
+    <% end %>
+    <% if current_user.projects.where(status:"confirmed").blank? %>
+    <%else %>
+    <h2 class="text-center my-5">Finished Projects</h2>
+        <div class="row my-4">
+        <% current_user.projects.where(status:"confirmed").each do |project| %>
+        <div class="card-homepage shadow p-4 mb-5 col-6 justify-content-between absolute">
+          <div class="row">
+            <div class="col-12 col-md-2 feature-col mt-2">
+              <i class="fas fa-laptop-code feature-home"></i>
+              <p class="card-pro"><%= project.user.level.name %></p>
+            </div>
+            <div class="col-12 col-md-10">
+              <h4><%= link_to "#{project.name}", project_path(project) %></h4>
+                <p class="pro"><%= project.deadline- Time.now.to_date %></p>
+
+                <p><%= project.description %></p>
+                <%= link_to "Project updates", solicitation_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+            </div>
+          </div>
+        </div>
+        <%end %>
+    </div>
+  <% end %>
+</div>
+
+</footer>
+   </a>
+
+<div class="footer" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url('<%= image_path "Banner6.png" %>');">
+  <div class="container d-flex align-items-center flex-column">
+    <div class="footer">
+
+      <p>Website made with <i class="far fa-heart"></i> by
+      <a href="https://github.com/louisdemof" target="_blank">Louis de Moffarts</a>,
+      <a href="https://github.com/Lennertgova" target="_blank">Lennert Govaerts</a>,
+      <a href="https://github.com/kristinger"target="_blank">Kristin Gerlach</a> &
+      <a href="https://github.com/mailysrenson" target="_blank">Maïlys Renson</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!--         <% unless current_user.projects.empty?%>
           <% current_user.projects.each do |project| %>
             <div class="card my-2 col-3 offset-1">
               <div class="card-header">
@@ -72,6 +180,4 @@
               </div>
             </div>
           <%end%>
-        <%end%>
-      </div>
-    </div>
+        <%end%> -->

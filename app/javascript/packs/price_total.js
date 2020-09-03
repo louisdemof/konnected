@@ -1,4 +1,4 @@
-const InitPriceTotal = () => {
+const initPriceTotal = () => {
   let form_element = document.querySelector(".edit_project")
   if (form_element) {
     let features_fieldset = form_element.querySelector('.project_features')
@@ -37,4 +37,4 @@ const InitPriceTotal = () => {
   }
 };
 
-export { InitPriceTotal };
+export { initPriceTotal };
