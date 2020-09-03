@@ -16,16 +16,18 @@
       </li>
     </ul>
   </div>
-  <div class="m-3">
-    <div class="d-flex flex-column align-items-start justify-content-center">
-      <h2 class="my-3">Summary of <%= @project.name %></h2>
-        <table class="mt-3">
-          <tr>
-            <th class="first-col">Pages</th>
-            <th class="second-col">Price</th>
-            <th class="third-col"></th>
-          </tr>
-          <% @project.project_pages.each do |page| %>
+  <% if @project.order %>
+    <div class="row justify-content-around">
+      <div class="col-5 m-3">
+        <div class="d-flex flex-column align-items-start justify-content-center border border-dark rounded pl-3">
+          <h2 class="my-3">Summary of <%= @project.name %></h2>
+          <table class="mt-3">
+            <tr>
+              <th class="first-col">Pages</th>
+              <th class="second-col">Price</th>
+              <th class="third-col"></th>
+            </tr>
+              <% @project.project_pages.each do |page| %>
             <tr>
               <td><%= Page.find(page.page_id).name %></td>
               <td>€<%= Page.find(page.page_id).amount_cents/100 %></td>
@@ -34,8 +36,75 @@
               <% end %>
               </td>
             </tr>
-          <% end %>
+              <% end %>
           </table>
+            <table class="mt-5">
+              <tr>
+                <th class="first-col">Features</th>
+                <th class="second-col">Price</th>
+                <th class="third-col"></th>
+              </tr>
+                <% @project.project_features.each do |feature| %>
+              <tr>
+                <td><%= Feature.find(feature.feature_id).name %></td>
+                <td>€<%= Feature.find(feature.feature_id).amount_cents/100 %></td>
+                <td><%= link_to project_project_feature_path(@project, feature), method: :delete, remote: true do %>
+                  <i class="far fa-trash-alt"></i>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </table>
+              <!-- <#%= simple_form_for(Order.new, remote: true) do |f| %>
+              <#%= f.input :project_id, as: :hidden, input_html: {value: @project.id } %>
+              <#%= f.submit class: "btn btn-primary btn-lg btn-block" %>
+              <#% end %> -->
+          <hr>
+        </div>
+      </div>
+        <div class="col-5 m-3">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-dark"> <h3> TOTAL PRICE: <%= @project.total_price / 100 %> euro</h3></li>
+            <li class="list-group-item list-group-item-light">
+              <button id="pay" class="btn btn-primary">Pay</button>
+                <script src="https://js.stripe.com/v3/"></script>
+                <script>
+                  const paymentButton = document.getElementById('pay');
+                  paymentButton.addEventListener('click', () => {
+                    const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+                    stripe.redirectToCheckout({
+                      sessionId: '<%= @project.order.checkout_session_id %>'
+                    });
+                  });
+                </script>
+              <%= link_to "Pay Later", project_path(@project, params: { project: { status: "published"}}), method: :put, class: "btn btn-warning" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% else %>
+   <div class="row justify-content-around">
+      <div class="col-5 m-3">
+        <div class="d-flex flex-column align-items-start justify-content-center border border-dark rounded pl-3">
+          <h2 class="my-3">Summary of <%= @project.name %></h2>
+            <table class="mt-3">
+              <tr>
+                <th class="first-col">Pages</th>
+                <th class="second-col">Price</th>
+                <th class="third-col"></th>
+              </tr>
+              <% @project.project_pages.each do |page| %>
+              <tr>
+                <td><%= Page.find(page.page_id).name %></td>
+                <td>€<%= Page.find(page.page_id).amount_cents/100 %></td>
+                <td><%= link_to project_project_page_path(@project, page), method: :delete, remote: true do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </table>
             <table class="mt-5">
               <tr>
                 <th class="first-col">Features</th>
@@ -53,29 +122,21 @@
                 </tr>
               <% end %>
             </table>
-          <hr>
-          <h4 class="my-3">Total price: <%= @project.total_price / 100 %> euro</h4>
+              <%= simple_form_for(Order.new, remote: true) do |f| %>
+              <%= f.input :project_id, as: :hidden, input_html: {value: @project.id } %>
+              <%= f.submit class: "btn btn-primary btn-lg btn-block" %>
+              <% end %>
+            <hr>
+        </div>
+      </div>
+    <div class="col-5 m-3">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-dark bg-light"> <h3 class="text-muted"> TOTAL PRICE: <%= @project.total_price / 100 %> euro</h3></li>
+          <li class="list-group-item list-group-item-light">
+            <button id="pay" class="btn btn-light text-muted bg-light">Pay</button>
+            <button id="pay" class="btn btn-light text-muted bg-light">Pay later</button>
+          </li>
+        </ul>
+      </div>
     </div>
-
-    </div>
-      <% if @project.order %>
-        <button id="pay" class="btn btn-primary">Pay</button>
-          <script src="https://js.stripe.com/v3/"></script>
-          <script>
-            const paymentButton = document.getElementById('pay');
-            paymentButton.addEventListener('click', () => {
-              const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
-              stripe.redirectToCheckout({
-                sessionId: '<%= @project.order.checkout_session_id %>'
-              });
-            });
-          </script>
-        <%= link_to "Pay Later", project_path(@project, params: { project: { status: "published"}}), method: :put, class: "btn btn-warning" %>
-      <% else %>
-        <%= simple_form_for(Order.new, remote: true) do |f| %>
-          <%= f.input :project_id, as: :hidden, input_html: {value: @project.id } %>
-          <%= f.submit %>
-        <% end %>
-      <% end %>
-  </div>
-</div>
+  <% end %>
