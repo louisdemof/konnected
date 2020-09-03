@@ -10,11 +10,25 @@
     <h2>Add recap of the price here</h2>
     <div class="col-sm  rounded px-3 small_card">
         <p> price: <%= @project.total_price / 100 %> euro </p>
-      </div>
+    </div>
   </div>
-  <%= simple_form_for(Order.new) do |f| %>
+  <% if @project.order %>
+    <button id="pay" class="btn btn-primary">Pay</button>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+          const paymentButton = document.getElementById('pay');
+          paymentButton.addEventListener('click', () => {
+            const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+            stripe.redirectToCheckout({
+              sessionId: '<%= @project.order.checkout_session_id %>'
+            });
+          });
+        </script>
+      <%= link_to "Pay Later", project_path(@project, params: { project: { status: "published"}}), method: :put, class: "btn btn-warning" %>
+  <% else %>
+  <%= simple_form_for(Order.new, remote: true) do |f| %>
     <%= f.input :project_id, as: :hidden, input_html: {value: @project.id } %>
     <%= f.submit %>
   <% end %>
+  <% end %>
 </div>
-
