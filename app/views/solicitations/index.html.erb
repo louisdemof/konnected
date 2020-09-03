@@ -11,7 +11,7 @@
               <% else %>
                 <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
               <% end %>
-              <h3><%=" #{solicitation.user.first_name} #{solicitation.user.last_name} "%></h3>
+-              <h3><%= link to"'#{solicitation.user.first_name} #{solicitation.user.last_name}", user_path(solicitation.user)%></h3>
                 <p><%=" #{solicitation.comment} "%></p>
     <!-- The value of the button is important for the change of status, if it
       changes, the validate method in thesolicitation controller needs to be modified accordingly -->
