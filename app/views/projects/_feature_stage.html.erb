@@ -27,7 +27,7 @@
               <input type="hidden" name="project[status]" value="feature_stage">
               <%= f.association :features, as: :check_boxes %>
               <div class="card-footer bg-transparent border-success">
-                <%= f.submit %>
+                <%= f.submit class: "btn btn-primary btn-lg btn-block" %>
               </div>
             <% end %>
 <!-- Code necessary for the javascript insert_pages -->
@@ -42,19 +42,19 @@
       </div>
     <div class="col-4 mt-4">
       <div>
-        <ul class="list-group" id="cart2">
+        <ul class="list-group">
           <li class="list-group-item list-group-item-primary w-100"> SHOPPING CART </li>
           <li class="list-group-item list-group-item-dark"> Pricing pages </li>
           <li class="list-group-item list-group-item-light">
             <% @project_pages = @project.pages %>
               <% @project_pages.each do |page| %>
-              <%= page.name %> : <%= page.amount_cents/100 %> euro
+              <div> <%= page.name %> - <%= page.amount_cents/100 %> euro </div>
             <% end %>
           </li>
           <li class="list-group-item list-group-item-dark"> Pricing features </li>
           <li class="list-group-item list-group-item-light" id="feature-list"></li>
           <li class="list-group-item list-group-item-success w-100">
-            <h3> Total cost: <span id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100 %></span> euro</h3>
+            <h3>Total cost: </h3><div class="d-flex"><h2 id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100%> </h2> EURO </div>
           </li>
         </ul>
       </div>

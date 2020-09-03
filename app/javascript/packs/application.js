@@ -45,6 +45,7 @@ document.addEventListener('turbolinks:load', () => {
   markAsRead();
   loadDynamicBannerText();
   initStarRating();
+  insertPages();
 });
 
 

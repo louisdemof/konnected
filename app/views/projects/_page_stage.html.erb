@@ -1,45 +1,56 @@
-
 <div class="container my-5">
-<div class="card">
+ <div class="card">
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
         <a class="nav-link" href="/projects/<%=@project.id%>/edit">General information</a>
       </li>
       <li class="nav-item">
-        <%= link_to "Add pages", project_path(@project, params: { project: { status: "general_info" } }), method: :put, remote: true, class: "nav-link active" %>
+        <%= link_to "Add pages", project_path(@project, params: { project: { status: "general_info" } }), method: :put, remote: true, class: "nav-link " %>
       </li>
       <li class="nav-item">
-        <%= link_to "Add features", project_path(@project, params: { project: { status: "page_stage" } }), method: :put, remote: true, class: "nav-link" %>
+        <%= link_to "Add features", project_path(@project, params: { project: { status: "page_stage" } }), method: :put, remote: true, class: "nav-link active" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Confirm</a>
+        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Confirm</a>
       </li>
     </ul>
   </div>
-  <div class="p-5">
-    <h1 class="my-3">Select the different pages you need for your project</h1>
-    <%= simple_form_for(@project) do |f| %>
-      <input type="hidden" name="project[status]" value="page_stage">
-      <%= f.association :pages, as: :check_boxes %>
-      <%= f.submit %>
-    <% end %>
-    <% @pages.each do |page| %>
-      <div id="<%=page.id%>" class="d-none" data-name="<%= page.name %>">
-        <%= page.amount_cents %>
+  <div class="row row-cols-2 justify-content-md-center m-3">
+    <div clas="col-8 mt-4">
+      <div class="card border-success mt-4">
+        <div class="card-header bg-transparent border-success">
+          <h1 class="my-3">SELECT PAGES</h1>
+        </div>
+          <div class="card-body text-success">
+            <%= simple_form_for(@project) do |f| %>
+              <input type="hidden" name="project[status]" value="page_stage">
+              <%= f.association :pages, as: :check_boxes %>
+              <div class="card-footer bg-transparent border-success">
+                <%= f.submit class: "btn btn-primary btn-lg btn-block" %>
+              </div>
+            <% end %>
+<!-- Code necessary for the javascript insert_pages -->
+            <% @pages.each do |page| %>
+              <div id="<%=page.id%>" class="d-none" data-name="<%= page.name %>">
+                <%= page.amount_cents %>
+              </div>
+            <%end%>
+<!-- // -->
+          </div>
+        </div>
       </div>
-    <% end %>
-  </div>
-</div>
-<div class="col-4 mt-4">
+    <div class="col-4 mt-4">
       <div>
-        <ul class="list-group">
+        <ul class="list-group" >
           <li class="list-group-item list-group-item-primary w-100"> SHOPPING CART </li>
-          <li class="list-group-item list-group-item-dark"> Pricing features </li>
+          <li class="list-group-item list-group-item-dark"> Pricing pages </li>
           <li class="list-group-item list-group-item-light" id="cart2"></li>
           <li class="list-group-item list-group-item-success w-100">
-            <h3> Total cost: <span id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100 %></span> euro</h3>
+           <h3> Total cost: </h3><div class="d-flex"><h2 id="total" data-total="<%= @project.total_price / 100 %>"><%= @project.total_price / 100%> </h2> EURO </div>
           </li>
         </ul>
       </div>
     </div>
+  </div>
+</div>
