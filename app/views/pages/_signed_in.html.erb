@@ -42,14 +42,14 @@
           <div class="row">
             <div class="col-12 col-md-2 feature-col mt-2">
               <i class="fas fa-laptop-code feature-home"></i>
-              <p class="card-pro"><%= project.user.level.name %></p>
             </div>
             <div class="col-12 col-md-10">
               <h4><%= link_to "#{project.name}", project_path(project) %></h4>
                 <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
 
                 <p><%= project.description %></p>
-                <%= link_to "Project updates", solicitation_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+                <% solicitation = project.solicitations.find_by(status:"Accepted") %>
+                <%= link_to "Project updates", solicitation_path(solicitation), class:" absolute-bottom btn btn-outline-primary my-2" %>
             </div>
           </div>
         </div>

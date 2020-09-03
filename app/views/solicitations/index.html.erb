@@ -1,57 +1,51 @@
 <div class="container">
-  <h2>Applications for: "<%=@project.name%>"</h2>
-  <!--test-->
-  <% @project.solicitations.each do |solicitation| %>
-  <div class="solicitation-card">
-  <div class="card-container">
-    <span class="pro"><%= solicitation.user.level.name %></span>
-    <% if solicitation.user.photo.attached? %>
-      <%= cl_image_tag solicitation.user.photo.key, height: 143, width: 143, crop: :fill, class:"round", alt:"user" %>
-    <% else %>
-       <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
-    <% end %>
-    <h3><%=" #{solicitation.user.first_name} #{solicitation.user.last_name} "%></h3>
-     <p><%=" #{solicitation.comment} "%></p>
-    <div class="buttons">
-
-  <!-- The value of the button is important for the change of status, if it
-    changes, the validate method in thesolicitation controller needs to be modified accordingly -->
-      </button>
-       <%= simple_form_for(solicitation, url: validate_solicitation_path(solicitation), html: {method: :patch}) do |f| %>
-                  <%= f.button :submit, 'Select this dev', value: "Select this dev", class: "btn btn-primary"%>
-       <% end %>
-       <div class="d-flex flex-row justify-content-center mb-0">
-        <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.phone_number}", target:"_blank", class: "fas fa-phone fa-2x" %></p>
-        <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.linkedin_profile}", target:"_blank", class: "fab fa-linkedin fa-2x" %></p>
-        <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.website_1}", target:"_blank", class:"fas fa-desktop fa-2x" %></p>
-        <% if solicitation.user.website_2.blank? %>
-        <%else %>
-          <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.website_2}", target:"_blank", class:"fas fa-desktop fa-2x" %></p>
-        <% end %>
-        <% if solicitation.user.website_3.blank? %>
-        <%else %>
-          <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.website_3}", target:"_blank",  class:"fas fa-desktop fa-2x" %></p>
-        <% end %>
-    </div>
-    <p >Member since:<%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%></p>
-    <div class="skills">
-      <h6 class="text-white">Skills</h6>
-      <ul>
-        <li>UI / UX</li>
-        <li>Front End Development</li>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>React</li>
-        <li>Node</li>
-      </ul>
-    </div>
+  <h2 class="text-center">Applications for: "<%=@project.name%>"</h2>
+    <!--test-->
+    <div class="solicitation-container row">
+    <% @project.solicitations.each do |solicitation| %>
+      <div class="solicitation-card col-sm-10 col-md-5 col-lg-4 offset-1">
+          <div class="card-container-solicitations">
+              <span class="pro"><%= solicitation.user.level.name %></span>
+              <% if solicitation.user.photo.attached? %>
+                <%= cl_image_tag solicitation.user.photo.key, height: 143, width: 143, crop: :fill, class:"round", alt:"user" %>
+              <% else %>
+                <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
+              <% end %>
+              <h3><%=" #{solicitation.user.first_name} #{solicitation.user.last_name} "%></h3>
+                <p><%=" #{solicitation.comment} "%></p>
+    <!-- The value of the button is important for the change of status, if it
+      changes, the validate method in thesolicitation controller needs to be modified accordingly -->
+                    <%= simple_form_for(solicitation, url: validate_solicitation_path(solicitation), html: {method: :patch}) do |f| %>
+                      <%= f.button :submit, 'Select this dev', value: "Select this dev", class: "btn btn-primary"%>
+                    <% end %>
+                    <div class="d-flex flex-row justify-content-center mb-0">
+                      <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.phone_number}", target:"_blank", class: "fas fa-phone fa-2x" %></p>
+                      <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.linkedin_profile}", target:"_blank", class: "fab fa-linkedin fa-2x" %></p>
+                      <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.website_1}", target:"_blank", class:"fas fa-desktop fa-2x" %></p>
+                      <% if solicitation.user.website_2.blank? %>
+                      <%else %>
+                        <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.website_2}", target:"_blank", class:"fas fa-desktop fa-2x" %></p>
+                      <% end %>
+                      <% if solicitation.user.website_3.blank? %>
+                      <%else %>
+                        <p class="p-3 mb-0"> <%=link_to "", "#{solicitation.user.website_3}", target:"_blank",  class:"fas fa-desktop fa-2x" %></p>
+                      <% end %>
+                    </div>
+                    <p >Member since:<%=" #{solicitation.user.created_at.strftime("%d of %B, %Y")} "%></p>
+                    <div class="skills">
+                      <h6 class="text-white">Skills</h6>
+                        <ul>
+                          <li>UI / UX</li>
+                          <li>Front End Development</li>
+                          <li>HTML</li>
+                          <li>CSS</li>
+                          <li>JavaScript</li>
+                          <li>React</li>
+                          <li>Node</li>
+                        </ul>
+                    </div>
+                   </div>
+        </div>
+    <%end %>
   </div>
-</div>
-
-  <%end %>
-
-
-
-
 </div>
