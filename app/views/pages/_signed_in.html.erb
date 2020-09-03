@@ -18,22 +18,23 @@
       <h2 class="text-center mb-3">My Dashboard</h2>
       <div class="row my-4">
         <div class="col-xs-6 col-md-4 box-border">
-          <a href="#" class="btn-box big card-text"><i class="fas fa-edit"></i>
+          <div class="btn-box big card-text"><i class="fas fa-edit"></i>
             <b><%= current_user.projects.count %></b>
-              <p class="text-muted">Number of Projects</p>
+              <p class="text-muted">Number of Projects</p></div>
         </div>
         <div class="col-xs-6 col-md-4 box-border">
-          <a href="#" class="btn-box big"><i class="fas fa-user-check"></i>
+          <div class="btn-box big"><i class="fas fa-user-check"></i>
             <% sum = 0 %>
             <% current_user.projects.each do |project| %>
-            <b><%=sum += project.solicitations.where(status:"pending").count%></b>
-            <%end %>
-              <p class="text-muted">Number of Applications</p></a>
+              <% sum += project.solicitations.where(status:"Pending").count %>
+            <% end %>
+            <b><%= sum %></b>
+              <p class="text-muted">Number of Applications</p></div>
         </div>
         <div class="col-xs-6 col-md-4 box-border">
-          <a href="#" class="btn-box big"><i class="fas fa-check-square"></i>
+          <div class="btn-box big"><i class="fas fa-check-square"></i>
             <b><%= current_user.projects.where(status: "completed").count %></b>
-              <p class="text-muted">Finished Projects</p></a>
+              <p class="text-muted">Finished Projects</p></div>
         </div>
       </div>
       <% if current_user.projects.where(status:"assigned").blank? %>
@@ -73,9 +74,12 @@
             <div class="col-12 col-md-10">
               <h4><%= link_to "#{project.name}", project_path(project) %></h4>
                 <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
-
                 <p><%= project.description %></p>
-                <%= link_to "Check Applications", project_solicitations_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+                <% if project.solicitations.length > 0%>
+                  <%= link_to "Check Applications (#{project.solicitations.length})", project_solicitations_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
+                <% else %>
+                  <%= link_to "No applications yet", "#", class:"absolute-bottom btn btn-outline-primary my-2 disabled" %>
+                <% end %>
             </div>
           </div>
         </div>
@@ -117,14 +121,12 @@
               <i class="fas fa-laptop-code feature-home"></i>
             </div>
             <div class="col-12 col-md-10">
-              <h4><%= link_to "Draft #{project.name}", project_path(project) %></h4>
+              <h4><%= link_to "Draft #{project.name}", project_path(project) %>
+                <%= link_to "   ", project_path(project),method: :delete, data: { confirm: "Are you sure you want to delete this draft?" }, class:"far fa-trash-alt grey-bin"%></h4>
                 <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
 
                 <p><%= project.description %></p>
                 <%= link_to "Finish project", project_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
-                <%= link_to "Delete draft", project_path(project),method: :delete,
-                  data: { confirm: "Are you sure you want to delete this draft?" },
-                  class:"btn btn-outline-danger" %>
             </div>
           </div>
         </div>
@@ -137,13 +139,11 @@
             </div>
             <div class="col-12 col-md-10">
               <h4><%= link_to "Draft #{project.name}", project_path(project) %></h4>
+              <%= link_to "   ", project_path(project),method: :delete, data: { confirm: "Are you sure you want to delete this draft?" }, class:"far fa-trash-alt grey-bin"%></h4>
                 <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
 
                 <p><%= project.description %></p>
                 <%= link_to "Finish project", project_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
-                <%= link_to "Delete draft", project_path(project),method: :delete,
-                  data: { confirm: "Are you sure you want to delete this draft?" },
-                  class:"btn btn-outline-danger" %>
             </div>
           </div>
         </div>
@@ -156,13 +156,11 @@
             </div>
             <div class="col-12 col-md-10">
               <h4><%= link_to "Draft #{project.name}", project_path(project) %></h4>
+              <%= link_to "   ", project_path(project),method: :delete, data: { confirm: "Are you sure you want to delete this draft?" }, class:"far fa-trash-alt grey-bin"%></h4>
                 <p class="pro">Deadline: <%= project.deadline.strftime("%d-%m-%Y") %></p>
 
                 <p><%= project.description %></p>
                 <%= link_to "Finish project", project_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
-                <%= link_to "Delete draft", project_path(project),method: :delete,
-                  data: { confirm: "Are you sure you want to delete this draft?" },
-                  class:"btn btn-outline-danger" %>
             </div>
           </div>
         </div>

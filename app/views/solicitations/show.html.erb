@@ -1,9 +1,8 @@
     <div class="container d-flex flex-column align-items-center my-4">
-      <h2 class="">Updates</h2>
+      <h2>Updates of <%= @project.name %></h2>
+      <%= link_to "Project details", project_path(@project) %>
       <% if current_user.student %>
         <%= link_to "Add update", new_project_solicitation_intermediary_update_path(@project, @solicitation, @intermediary_update), class:"btn btn-outline-primary" %>
-      <% else %>
-        <%= link_to "Project details", project_path(@project), class:"btn btn-outline-primary" %>
       <% end %>
     </div>
   
