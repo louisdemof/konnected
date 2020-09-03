@@ -55,9 +55,9 @@ page_6 = Page.create(name: "FAQ page", description: "a web page listing frequent
     address: "#{Faker::Address.street_address} #{Faker::Address.city}" ,
     phone_number: Faker::PhoneNumber.cell_phone,
     student: [true, false].sample,
-    level: Level.all.sample
   )
 end
+
 
 User.create!(
     email: "louisdemof@hotmail.com",
@@ -68,9 +68,62 @@ User.create!(
     address: "Rue Félicien Delince 14, 1160, Auderghem" ,
     phone_number: "0498827393",
     student: true,
-    level: Level.all.
+    level: Level.all.sample,
     github_username: "louisdemof"
   )
+
+User.create!(
+    email: "louis@gmail.com",
+    password: 123456,
+    first_name: "Louis",
+    last_name: "de Moffarts",
+    availability: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    address: "Main street" ,
+    phone_number: "123456789",
+    student: true,
+    level: Level.all.sample,
+    github_username: "louisdemof"
+  )
+
+User.create!(
+    email: "lennert@gmail.com",
+    password: 123456,
+    first_name: "Lennert",
+    last_name: "Govaerts",
+    availability: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    address: "Main street" ,
+    phone_number: "123456789",
+    student: true,
+    level: Level.all.sample,
+    github_username: "Lennertgova"
+  )
+
+User.create!(
+    email: "mailys@gmail.com",
+    password: 123456,
+    first_name: "Mailys",
+    last_name: "Renson",
+    availability: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    address: "Main street" ,
+    phone_number: "12345678",
+    student: false,
+    level: Level.all.sample,
+    github_username: "mailysrenson"
+  )
+
+User.create!(
+    email: "kristin@gmail.com",
+    password: 123456,
+    first_name: "Kristin",
+    last_name: "Gerlach",
+    availability: Faker::Date.between(from: 2.days.ago, to: Date.today),
+    address: "Main street" ,
+    phone_number: "12345678",
+    student: true,
+    level: Level.all.sample,
+    github_username: "kristinger"
+  )
+
 #Seed for adding company name to companies
 
 User.where(student: false).each do |user|
