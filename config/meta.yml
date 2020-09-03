@@ -1,0 +1,5 @@
+meta_product_name: "Konnected"
+meta_title: "Konnected - Empower each other"
+meta_description: "Konnected will help you find the perfect junior developer to build your dream"
+meta_image: "cover.jpg" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards

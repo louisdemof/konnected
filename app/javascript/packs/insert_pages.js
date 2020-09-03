@@ -14,14 +14,12 @@ const insertPages = () => {
       /* var result = init_total */
         var checkout = document.getElementById('cart2')
         checkout.innerHTML = ""
-
         checkboxs.forEach(checkbox => {
           if (checkbox.checked === true) {
           const dom_title = document.getElementById(checkbox.value)
           const price = dom_title.innerText;
           const name = dom_title.dataset.name
-          checkout.insertAdjacentHTML('beforeend', `<li> ${name} - ${price/100} euro </li>` );
-
+          checkout.insertAdjacentHTML('beforeend', `<li style="list-style: none;"> ${name} - ${price/100} euro </li>` );
           }
         })
       });
@@ -35,12 +33,11 @@ const insertPages = () => {
           const dom_title = document.getElementById(checkbox.value)
           const price = dom_title.innerText;
           const name = dom_title.dataset.name
-          checkout.insertAdjacentHTML('beforeend', `<li> ${name} - ${price/100} euro </li>` );
-      }
-    })
-    });
-  }
-
+          checkout.insertAdjacentHTML('beforeend', `<li style="list-style: none;"> ${name} - ${price/100} euro </li>` );
+          }
+        })
+      });
+    }
   }
 };
 
