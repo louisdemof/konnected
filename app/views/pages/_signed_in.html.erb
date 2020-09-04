@@ -63,7 +63,7 @@
     <% end %>
     <% if current_user.projects.where(status:"published").blank? %>
     <%else %>
-    <h2 class="text-center my-5">Project with applications pending</h2>
+    <h2 class="text-center my-5">Project open for applications</h2>
         <div class="row my-4">
         <% current_user.projects.where(status:"published").each do |project| %>
         <div class="card-homepage shadow p-4 mb-5 col-6 justify-content-between absolute">
