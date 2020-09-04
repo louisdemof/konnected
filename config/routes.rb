@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
     resources :users, :only => [:show]
   root to: 'pages#home'
+  get '/homepage', to: 'pages#homepage'
   patch 'solicitations/:id/validate', to: "solicitations#validate", as: :validate_solicitation
   patch 'solicitations/:id/confirm_project', to: "projects#confirm_project", as: :confirm_project
   mount StripeEvent::Engine, at: '/stripe-webhooks'
