@@ -8,7 +8,7 @@
 
   <div class="container d-flex flex-column align-items-center">
     <% @new_solicitation_first = @solicitation.intermediary_updates.reverse %>
-    <% counter = 0 %>
+    <% n = @new_solicitation_first.length %>
     <% @new_solicitation_first.each do |update| %>
       <div class="card w-75 my-3">
         <div class="card-header bg-white text-right">
@@ -16,8 +16,8 @@
         </div>
         <div class="card-body">
           <!-- formula to count the number of intermediary update -->
-          <% counter += 1 %>
-          <h5 class="card-title">Update <%= counter %></h5>
+          <h5 class="card-title">Update <%= n %></h5>
+          <% n -= 1 %>
           <p class="card-text">
             <%= update.description %>
           </p>
