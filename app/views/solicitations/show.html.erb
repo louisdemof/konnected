@@ -25,11 +25,10 @@
             <p class="card-text"><%= link_to "Click here to see the update", "#{update.url}", target:"_blank"%></p>
           <% end %>
           <% if update.documents %>
-            <p class="card-text">show documents</p>
               <% update.documents.each do |document| %>
                 <div class="d-flex flex-row mx-2">
                   <%= link_to rails_blob_path(document, disposition: "document"), target: "_blank" do %>
-                    <i class="fas fa-file-download fa-2x"></i>
+                    <i class="fas fa-file-download fa-2x mr-2"></i>
                   <% end %>
                   <p class="time_update" class="text-center"><%= document.filename %></p>
                   </div>
