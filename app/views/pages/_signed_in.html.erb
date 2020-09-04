@@ -101,7 +101,7 @@
                 <p class="pro"><%= project.deadline- Time.now.to_date %></p>
 
                 <p><%= project.description %></p>
-                <% if project.solicitation.where(status: "Accepted").intermediary_updates.length > 0 %>
+                <% if project.solicitations.where(status: "Accepted").intermediary_updates.length > 0 %>
                   <%= link_to "Project updates", solicitation_path(project), class:" absolute-bottom btn btn-outline-primary my-2" %>
                 <% else %>
                   <%= link_to "No updates yet", "#", class:" absolute-bottom btn btn-outline-primary my-2 disabled" %>
