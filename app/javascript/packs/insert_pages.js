@@ -3,8 +3,7 @@ const insertPages = () => {
     let features_fieldset = document.querySelector('.project_features')
     let pages_fieldset = document.querySelector('.project_pages')
     let checkboxs = document.querySelectorAll("fieldset .form-check-input")
-    let init_total = parseInt(document.getElementById('total').dataset.total, 10)
-
+    
     if(pages_fieldset)
     {
       pages_fieldset.addEventListener("change", (event) => {
