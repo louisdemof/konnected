@@ -4,13 +4,14 @@ The backend, markup and css have been completed but we still need to animate and
 You can see the final result here 👉 https://konnect-ed.herokuapp.com/
 
 
-Key Features
-
+<h2> Key Features </h2>
+<li>
 - Calculation engine built with Ruby to calculate the price of the project based on the features selected by the company posting the project. 
 - Order Model integrated to Stripe to allow payments from the companies.
 - Real time chat to post project updates between companies and developers created with Web Socket and Action Cable.
 - Notification system built on JS twith a Web Socket and Action Cable.
 - Project application feature built with Ruby to allow a business owner to select one student for his project 
 - Animate text with typed.js
+ </li>
 
-<h1> This is a Bix text </h1>
+
