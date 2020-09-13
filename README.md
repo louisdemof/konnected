@@ -7,7 +7,7 @@ You can see the final result here 👉 https://konnect-ed.herokuapp.com/
 
 <h2> Key Features </h2>
 
-<li>Calculation engine built with Ruby to calculate the price of the project based on the features selected by the company posting the project.</li>
+<li>Calculation engine built with Ruby to calculate the price of the project based on the features selected by the company.</li>
 <li>Order Model integrated to Stripe to allow payments from the companies. </li>
 <li>Real time chat to post project updates between companies and developers created with Web Socket and Action Cable. </li>
 <li>Notification system built on JS twith a Web Socket and Action Cable. </li>
